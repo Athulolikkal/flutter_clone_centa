@@ -1,3 +1,6 @@
+import 'package:centa_clone/widgets/home_screen/auto_scroll_container.dart';
+import 'package:centa_clone/widgets/home_screen/recommendation_widget.dart';
+import 'package:centa_clone/widgets/home_screen/start_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,55 +16,25 @@ class HomeScreen extends StatelessWidget {
       child: ListView(
         children: [
           //First container
-          SizedBox(
-            height: 230,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  width: MediaQuery.of(context).size.width * 0.9,
-                ),
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(101, 41, 196, 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  width: MediaQuery.of(context).size.width * 0.9,
-                ),
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 54, 244, 63),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  width: MediaQuery.of(context).size.width * 0.9,
-                ),
-              ],
-            ),
-          ),
+          const AutoScrollContainerWidget(),
+
           SizedBox(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(children: [
-                    const Text(
+                  const Row(children: [
+                    Text(
                       'Trending Searches',
                       style:
-                          TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    Icon(Icons.arrow_upward),
+                    Icon(Icons.arrow_outward_outlined),
                   ]),
                   TextButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         'All Topics',
                         style: TextStyle(fontSize: 18, color: Colors.blue),
                       ))
@@ -100,45 +73,41 @@ class HomeScreen extends StatelessWidget {
 
           //Recommended for you
           SizedBox(
-            height: 250,
             child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: ListView(
-                scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 146, 146, 223),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    width: MediaQuery.of(context).size.width * 0.86,
+                  Text(
+                    'Recommended for You',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  Container(
-                    margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 146, 146, 223),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    width: MediaQuery.of(context).size.width * 0.86,
-                  ),
+                  TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'View All',
+                        style: TextStyle(fontSize: 18, color: Colors.blue),
+                      ))
                 ],
               ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 142, 205, 79),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              width: MediaQuery.of(context).size.width * 0.86,
-              height: 200,
-            ),
-          ),
+          const RecommendationWidget(),
+
+          // Padding(
+          //   padding: const EdgeInsets.all(10.0),
+          //   child: Container(
+          //     margin: const EdgeInsets.all(10),
+          //     decoration: BoxDecoration(
+          //       color: Color.fromARGB(255, 142, 205, 79),
+          //       borderRadius: BorderRadius.circular(10),
+          //     ),
+          //     width: MediaQuery.of(context).size.width * 0.86,
+          //     height: 200,
+          //   ),
+          // ),
+          const StartContainerWidget(),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Container(
