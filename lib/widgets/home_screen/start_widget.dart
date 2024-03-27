@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class StartContainerWidget extends StatelessWidget {
   const StartContainerWidget({super.key});
@@ -13,7 +12,15 @@ class StartContainerWidget extends StatelessWidget {
         margin: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 233, 244, 252),
-            borderRadius: BorderRadius.circular(10)),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: -2,
+                blurRadius: 2,
+                offset: const Offset(0, 3),
+              )
+            ]),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -53,21 +60,23 @@ class StartContainerWidget extends StatelessWidget {
                                   child: Text('Take the quiz to find out '),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 30.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 30.0),
                                   child: OutlinedButton(
                                     onPressed: () {},
-                                    child: Text(
-                                      'Start',
-                                      style: TextStyle(fontSize: 20),
-                                    ),
                                     style: ButtonStyle(
-                                      side: MaterialStatePropertyAll(BorderSide(
-                                          color: Colors.blue, width: 3)),
+                                      side: const MaterialStatePropertyAll(
+                                          BorderSide(
+                                              color: Colors.blue, width: 3)),
                                       foregroundColor:
                                           MaterialStateProperty.all(
                                               Colors.blue),
                                       minimumSize: MaterialStateProperty.all(
-                                          Size(100, 50)),
+                                          const Size(100, 50)),
+                                    ),
+                                    child: const Text(
+                                      'Start',
+                                      style: TextStyle(fontSize: 20),
                                     ),
                                   ),
                                 )

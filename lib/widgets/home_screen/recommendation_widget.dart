@@ -1,6 +1,5 @@
 import 'package:centa_clone/data/auto_scroll_container_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RecommendationWidget extends StatelessWidget {
   const RecommendationWidget({super.key});
@@ -11,15 +10,15 @@ class RecommendationWidget extends StatelessWidget {
       height: 360,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: autoScrollData.length,
+        itemCount: recommendation_data.length,
         itemBuilder: (context, index) {
-          return _recommendationCard(autoScrollData[index], context);
+          return _recommendationCard(recommendation_data[index], context);
         },
       ),
     );
   }
 
-  Widget _recommendationCard(String autoScrollData, BuildContext context) {
+  Widget _recommendationCard(Map autoScrollData, BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10.0),
       width: MediaQuery.of(context).size.width * 0.86,
@@ -42,34 +41,36 @@ class RecommendationWidget extends StatelessWidget {
             child: SizedBox(
               height: 200,
               child: Image.asset(
-                autoScrollData,
+                autoScrollData['image'],
                 fit: BoxFit.fill,
               ),
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(vertical: 5.0),
             child: ListTile(
               title: Text(
-                'Building Scial Emotional Intelligence: Strategies for classroom management',
+                autoScrollData['title'],
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
+                style: TextStyle(fontWeight: FontWeight.w500),
               ),
-              subtitle: Text('Team Centa'),
+              subtitle: const Text('Team Centa'),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Row(
+                Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.grade_sharp,
                       color: Colors.amber,
                     ),
-                    Text('4.7 | 39')
+                    Text(
+                        "${autoScrollData['rating']} | ${autoScrollData['number']} ")
                   ],
                 ),
                 TextButton(

@@ -18,23 +18,28 @@ class AutoScrollContainerWidget extends StatelessWidget {
   }
 
   Widget _buildContainer(String assetImagePath, BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      width: MediaQuery.of(context).size.width * 0.9,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Color.fromARGB(255, 194, 194, 194),
-            border: Border.all(
-              color: Color.fromARGB(255, 94, 93, 93),
-              width: 1,
+    return InkWell(
+      onTap: () {
+        print("${assetImagePath} image path clicked");
+      },
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        width: MediaQuery.of(context).size.width * 0.9,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Container(
+            decoration: BoxDecoration(
+              color:const Color.fromARGB(255, 194, 194, 194),
+              border: Border.all(
+                color:const Color.fromARGB(255, 94, 93, 93),
+                width: 1,
+              ),
+              image: DecorationImage(
+                image: AssetImage(assetImagePath),
+                fit: BoxFit.fill,
+              ),
+              borderRadius: BorderRadius.circular(10),
             ),
-            image: DecorationImage(
-              image: AssetImage(assetImagePath),
-              fit: BoxFit.fill,
-            ),
-            borderRadius: BorderRadius.circular(10),
           ),
         ),
       ),
