@@ -30,6 +30,7 @@ class TrendingSearchesWidget extends StatelessWidget {
       height: 100,
       width: MediaQuery.of(context).size.width * 0.86,
       child: ListView.builder(
+         physics:const NeverScrollableScrollPhysics() ,
           itemCount: groupList.length,
           itemBuilder: (context, index) {
             int totalSearches = groupList[index]['totalSearches'];

@@ -20,7 +20,7 @@ class RootScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CentaAppBar(),
+      appBar:const CentaAppBar(),
       bottomNavigationBar: const BottomNavigationBarCenta(),
       body: SafeArea(
           child: ValueListenableBuilder(

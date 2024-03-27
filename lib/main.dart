@@ -2,7 +2,7 @@ import 'package:centa_clone/screens/root_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(CentaClone());
+  runApp(const CentaClone());
 }
 
 class CentaClone extends StatelessWidget {
