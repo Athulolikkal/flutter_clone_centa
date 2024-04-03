@@ -1,4 +1,7 @@
+import 'package:centa_clone/screens/login_root.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CentaAppBar({super.key});
@@ -26,11 +29,19 @@ class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
             icon: const Icon(Icons.notifications_none),
             iconSize: 30.0,
           ),
-          const CircleAvatar(
-            backgroundColor: Color.fromARGB(255, 240, 238, 238),
-            foregroundColor: Colors.blue,
-            child: Icon(
-              Icons.person,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (cntx) => const LoginRoot()),
+                (Route<dynamic> route) => false,
+              );
+            },
+            child: const CircleAvatar(
+              backgroundColor: Color.fromARGB(255, 240, 238, 238),
+              foregroundColor: Colors.blue,
+              child: Icon(
+                Icons.person,
+              ),
             ),
           ),
           const SizedBox(

@@ -1,4 +1,4 @@
-import 'package:centa_clone/screens/root_screen.dart';
+import 'package:centa_clone/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class CentaClone extends StatelessWidget {
       title: 'Clone',
       theme: ThemeData(
           primaryColor: Colors.white, scaffoldBackgroundColor: Colors.white),
-      home:  RootScreen(),
+      home: const SplashScreen(),
     );
   }
 }
