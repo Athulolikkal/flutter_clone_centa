@@ -25,7 +25,7 @@ class ExploreWidget extends StatelessWidget {
                         title: Text(
                           communityPost[index]['user_name'],
                           style: const TextStyle(
-                              fontSize: 19, fontWeight: FontWeight.w500),
+                              fontSize: 18, fontWeight: FontWeight.w500),
                         ),
                         subtitle:
                             Text("${communityPost[index]['time_ago']} ago"),
@@ -34,7 +34,7 @@ class ExploreWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(23.0),
                         child: Text(
                           communityPost[index]['content'],
-                          style: TextStyle(fontSize: 15),
+                          style: const TextStyle(fontSize: 15),
                         ),
                       ),
                       Row(
@@ -42,24 +42,41 @@ class ExploreWidget extends StatelessWidget {
                         children: [
                           IconButton(
                               onPressed: () {
-                                print('share');
+                                print('like');
                               },
-                              icon:const Icon(Icons.thumb_up_alt_outlined)),
+                              icon: Row(
+                                children: [
+                                  const Icon(Icons.thumb_up_alt_outlined),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(communityPost[index]['likes'])
+                                ],
+                              )),
+                          IconButton(
+                            onPressed: () {
+                              print('message');
+                            },
+                            icon: Row(
+                              children: [
+                                  const Icon(Icons.message_outlined),
+                                   const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text("${communityPost[index]['comments']}")
+                              ],
+                            ),
+                          ),
                           IconButton(
                               onPressed: () {
                                 print('share');
                               },
-                              icon:const Icon(Icons.message_outlined)),
+                              icon: const Icon(Icons.share_outlined)),
                           IconButton(
                               onPressed: () {
-                                print('share');
+                                print('more');
                               },
-                              icon:const Icon(Icons.share_outlined)),
-                          IconButton(
-                              onPressed: () {
-                                print('share');
-                              },
-                              icon:const Icon(Icons.more_horiz_outlined)),
+                              icon: const Icon(Icons.more_horiz_outlined)),
                         ],
                       )
                     ],
