@@ -55,7 +55,7 @@ class TrendingSearchesWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold),
+                    color: Colors.black, fontWeight: FontWeight.bold,fontSize: 14),
               ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

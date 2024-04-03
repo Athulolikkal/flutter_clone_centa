@@ -87,7 +87,6 @@ class StartContainerWidget extends StatelessWidget {
                             flex: 5,
                             child: Image.asset(
                               'assets/images/online_education.png',
-                              // width: 140,
                               height: 140,
                               fit: BoxFit.cover,
                             ),

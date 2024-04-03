@@ -45,60 +45,69 @@ class _CommunityScreenState extends State<CommunityScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          TabBar(
-            dividerColor: Colors.white,
-            labelColor: Colors.blue,
-            unselectedLabelColor: Colors.grey,
-            controller: _tabController,
-            indicatorColor: Colors.blue,
-            tabs: const [
-              Tab(text: "Explore"),
-              Tab(text: "Following"),
-              Tab(text: "My Groups"),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
+        body: Column(
+          children: [
+            TabBar(
+              dividerColor: Colors.white,
+              labelColor: Colors.blue,
+              unselectedLabelColor: Colors.grey,
               controller: _tabController,
-              children: [
-                const ExploreWidget(),
-                FollowingWidget(changeTabIndex: changeTabIndex),
-                const MyGroupWidget(),
+              indicatorColor: Colors.blue,
+              tabs: const [
+                Tab(text: "Explore"),
+                Tab(text: "Following"),
+                Tab(text: "My Groups"),
               ],
             ),
-          )
-        ],
-      ),
-      floatingActionButton: _expandableFloatingButton
-          ? SpeedDial(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-              animatedIcon: AnimatedIcons.menu_close,
-              children: [
-                SpeedDialChild(
-                  child: const Icon(Icons.poll_outlined),
-                  label: 'Create a Poll!',
-                ),
-                SpeedDialChild(
-                    child: const Icon(Icons.post_add_outlined),
-                    label: 'Add Post'),
-              ],
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  const ExploreWidget(),
+                  FollowingWidget(changeTabIndex: changeTabIndex),
+                  const MyGroupWidget(),
+                ],
+              ),
             )
-          : _showFloatingActionButton
-              ? FloatingActionButton(
-                  onPressed: () {},
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)),
-                  child: const Icon(
-                    Icons.edit,
-                    color: Colors.white,
-                    size: 25,
+          ],
+        ),
+        floatingActionButton: _expandableFloatingButton
+            ? SpeedDial(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                animatedIcon: AnimatedIcons.menu_close,
+                children: [
+                  SpeedDialChild(
+                    child: const Icon(Icons.poll_outlined),
+                    label: 'Create a Poll!',
                   ),
-                )
-              : null,
-    );
+                  SpeedDialChild(
+                      child: const Icon(Icons.post_add_outlined),
+                      label: 'Add Post'),
+                ],
+              )
+            : _showFloatingActionButton
+                ? FloatingActionButton(
+                    onPressed: () {},
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                    child: const Icon(
+                      Icons.edit,
+                      color: Colors.white,
+                      size: 25,
+                    ),
+                  )
+                : FloatingActionButton(
+                    onPressed: () {},
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                    child: const Icon(
+                      Icons.person_add,
+                      color: Colors.white,
+                      size: 25,
+                    ),
+                  ));
   }
 }

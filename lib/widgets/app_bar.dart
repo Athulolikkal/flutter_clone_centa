@@ -6,35 +6,38 @@ class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(69.0);
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.white,
-      // toolbarHeight: 80,
-      title: Image.asset(
-        'assets/images/centa_C_logo.png',
-        width: 45,
-      ),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.search),
-          iconSize: 30.0,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: AppBar(
+        backgroundColor: Colors.white,
+        // toolbarHeight: 80,
+        title: Image.asset(
+          'assets/images/centa_C_logo.png',
+          width: 40,
         ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.notifications_none),
-          iconSize: 30.0,
-        ),
-        const CircleAvatar(
-          backgroundColor: Color.fromARGB(255, 240, 238, 238),
-          foregroundColor: Colors.blue,
-          child: Icon(
-            Icons.person,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
+            iconSize: 30.0,
           ),
-        ),
-        const SizedBox(
-          width: 20,
-        )
-      ],
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.notifications_none),
+            iconSize: 30.0,
+          ),
+          const CircleAvatar(
+            backgroundColor: Color.fromARGB(255, 240, 238, 238),
+            foregroundColor: Colors.blue,
+            child: Icon(
+              Icons.person,
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          )
+        ],
+      ),
     );
   }
 }

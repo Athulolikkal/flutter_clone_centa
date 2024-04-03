@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                     Text(
                       'Trending Searches',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     Icon(Icons.arrow_outward_outlined),
                   ]),
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                       onPressed: () {},
                       child: const Text(
                         'All Topics',
-                        style: TextStyle(fontSize: 18, color: Colors.blue),
+                        style: TextStyle(fontSize: 14, color: Colors.blue),
                       ))
                 ],
               ),
@@ -54,13 +54,13 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   const Text(
                     'Recommended for You',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   TextButton(
                       onPressed: () {},
                       child: const Text(
                         'View All',
-                        style: TextStyle(fontSize: 18, color: Colors.blue),
+                        style: TextStyle(fontSize: 14, color: Colors.blue),
                       ))
                 ],
               ),

@@ -20,12 +20,12 @@ class ExploreWidget extends StatelessWidget {
                         leading: CircleAvatar(
                           backgroundImage:
                               NetworkImage(communityPost[index]['profile_img']),
-                          radius: 30,
+                          radius: 25,
                         ),
                         title: Text(
                           communityPost[index]['user_name'],
                           style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500),
+                              fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                         subtitle:
                             Text("${communityPost[index]['time_ago']} ago"),
