@@ -1,7 +1,6 @@
 import 'package:centa_clone/screens/login_root.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 
 class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CentaAppBar({super.key});
@@ -12,7 +11,8 @@ class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: AppBar(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
+        surfaceTintColor:Colors.transparent ,
         // toolbarHeight: 80,
         title: Image.asset(
           'assets/images/centa_C_logo.png',

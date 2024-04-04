@@ -8,12 +8,38 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        surfaceTintColor:Colors.transparent ,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: ListView(
-          children: const[
+          children: const [
             GoogleAppleSignUp(),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: Color.fromARGB(255, 206, 204, 204),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                      ' Or ',
+                      style: TextStyle(color: Colors.black, fontSize: 14),
+                    ),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: Color.fromARGB(255, 206, 204, 204),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SignUpRegisterForm(),
           ],
         ),
