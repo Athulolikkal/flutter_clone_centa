@@ -1,3 +1,4 @@
+import 'package:centa_clone/services/flutter_services.dart';
 import 'package:flutter/material.dart';
 
 class GoogleAppleSignUp extends StatelessWidget {
@@ -49,7 +50,10 @@ class GoogleAppleSignUp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print('google signup called');
+                    FirebaseService.signInwithGoogle(context);
+                  },
                   style: ButtonStyle(
                     minimumSize: MaterialStatePropertyAll(
                         Size(MediaQuery.of(context).size.width * 0.4, 50)),
@@ -68,7 +72,9 @@ class GoogleAppleSignUp extends StatelessWidget {
                   ),
                 ),
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    FirebaseService.signOutFromGoogle();
+                  },
                   style: ButtonStyle(
                     minimumSize: MaterialStatePropertyAll(
                         Size(MediaQuery.of(context).size.width * 0.4, 50)),
