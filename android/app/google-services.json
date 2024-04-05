@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "994848563604",
+    "project_id": "fluttercentaclone",
+    "storage_bucket": "fluttercentaclone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994848563604:android:ffbe26d536d696910d2f81",
+        "android_client_info": {
+          "package_name": "com.example.centa_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994848563604-a1f0pdhnclo131e7sgcn0m4snahndrpi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.centa_clone",
+            "certificate_hash": "4654d7711660bbb0c4bfea27e2219af319e4a4b2"
+          }
+        },
+        {
+          "client_id": "994848563604-e46e0dfi144ksq9kb9b655bu5tujimt3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCncsr8bH00kS_SdndlrUQC50p4AO6A93o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994848563604-e46e0dfi144ksq9kb9b655bu5tujimt3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "994848563604-jqfkjm11lb2rgt486om59b4hgblc62ak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.centaClone"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
