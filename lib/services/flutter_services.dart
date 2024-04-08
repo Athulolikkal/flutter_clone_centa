@@ -1,6 +1,7 @@
 import 'package:centa_clone/screens/root_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseService {
@@ -19,8 +20,14 @@ class FirebaseService {
       );
       var user_details = await _auth.signInWithCredential(credential);
 
-      if (user_details != null) {
-        print("${user_details.user?.displayName},user details");
+      if (user_details.user != null) {
+        Map<String, dynamic> userDetails = {
+          'name': user_details.user?.displayName,
+          'email': user_details.user?.email,
+          'phoneNumber': user_details.user?.phoneNumber,
+          'userProfile': user_details.user?.photoURL
+        };
+        await GetStorage().write('user', userDetails);
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (cntx) => RootScreen()),
           (Route<dynamic> route) => false,
@@ -33,6 +40,7 @@ class FirebaseService {
   }
 
   static Future<void> signOutFromGoogle() async {
+    GetStorage().remove('user');
     await _googleSignIn.signOut();
     await _auth.signOut();
   }

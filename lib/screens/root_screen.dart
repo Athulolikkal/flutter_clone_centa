@@ -5,10 +5,11 @@ import 'package:centa_clone/screens/learning_screen.dart';
 import 'package:centa_clone/screens/mylearning_screen.dart';
 import 'package:centa_clone/widgets/app_bar.dart';
 import 'package:centa_clone/widgets/bottom_navigation_bar.dart';
+import 'package:centa_clone/widgets/drawer_centa.dart';
 import 'package:flutter/material.dart';
 
 class RootScreen extends StatelessWidget {
-  RootScreen({super.key});
+  const RootScreen({super.key});
   static ValueNotifier<int> selectedBottomIndex = ValueNotifier(0);
   final _pages = const [
     HomeScreen(),
@@ -20,8 +21,9 @@ class RootScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:const CentaAppBar(),
+      appBar: const CentaAppBar(),
       bottomNavigationBar: const BottomNavigationBarCenta(),
+      drawer: const CentaDrawer(),
       body: SafeArea(
           child: ValueListenableBuilder(
               valueListenable: selectedBottomIndex,
