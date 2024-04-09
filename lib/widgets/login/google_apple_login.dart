@@ -1,4 +1,5 @@
 import 'package:centa_clone/screens/signup_screen.dart';
+import 'package:centa_clone/services/flutter_services.dart';
 import 'package:flutter/material.dart';
 
 class GoogleAppleLogin extends StatelessWidget {
@@ -38,7 +39,9 @@ class GoogleAppleLogin extends StatelessWidget {
               ),
             ),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: ()async {
+                 await FirebaseService.signInwithGoogle(context);
+              },
               style: ButtonStyle(
                 minimumSize: MaterialStatePropertyAll(
                     Size(MediaQuery.of(context).size.width * 0.9, 50)),

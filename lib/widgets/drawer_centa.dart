@@ -52,11 +52,47 @@ class CentaDrawer extends StatelessWidget {
           // const SliverToBoxAdapter(
           //   child: CentaDrawerHeader(),
           // ),
-
           SliverList(
             delegate: SliverChildListDelegate([
+              //for showing user profile
               const CentaDrawerHeader(),
+              //listing drawer items
               const DrawerItemList(),
+              //end widget
+              Container(
+                color: Colors.white,
+                child:const Column(
+                  children: [
+                  
+                     Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 25),
+                      child: Divider(
+                        thickness: 2,
+                      ),
+                    ),
+                      SizedBox(height: 20,),
+                     Text(
+                      'Version',
+                      style: TextStyle(
+                          fontSize: 21,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 92, 171, 236),
+                          letterSpacing: 5),
+                      textAlign: TextAlign.center,
+                    ),
+                     Text(
+                      '1.3.26',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 17, 17, 17),
+                          letterSpacing: 5),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 40,),
+                  ],
+                ),
+              ),
             ]),
           ),
         ],

@@ -9,7 +9,7 @@ class FollowingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isNoData = true;
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5),
+      padding:const EdgeInsets.symmetric(vertical: 5),
       child: SizedBox(
         child: isNoData
             ? Column(

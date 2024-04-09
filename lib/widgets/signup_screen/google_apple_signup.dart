@@ -51,7 +51,7 @@ class GoogleAppleSignUp extends StatelessWidget {
               children: [
                 OutlinedButton(
                   onPressed: () {
-                    print('google signup called');
+                    // print('google signup called');
                     FirebaseService.signInwithGoogle(context);
                   },
                   style: ButtonStyle(
@@ -73,7 +73,7 @@ class GoogleAppleSignUp extends StatelessWidget {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    FirebaseService.signOutFromGoogle();
+                    // FirebaseService.signOutFromGoogle();
                   },
                   style: ButtonStyle(
                     minimumSize: MaterialStatePropertyAll(

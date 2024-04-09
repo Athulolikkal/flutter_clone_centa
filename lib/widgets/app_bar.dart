@@ -1,4 +1,4 @@
-import 'package:centa_clone/screens/login_root.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -8,8 +8,7 @@ class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(69.0);
   @override
   Widget build(BuildContext context) {
-    final userDetails = GetStorage().read('user');
-    print(userDetails);
+    var userDetails = GetStorage().read('user');
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: AppBar(

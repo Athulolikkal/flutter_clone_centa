@@ -40,7 +40,7 @@ class CentaDrawerHeader extends StatelessWidget {
                 Expanded(
                   flex: 6,
                   child: Text(
-                    userInfo != null ? userInfo['name'] : 'Centa User',
+                    userInfo != null ?  userInfo['name'].toUpperCase() : 'Centa User',
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 19),
                   ),
@@ -70,15 +70,15 @@ class CentaDrawerHeader extends StatelessWidget {
             children: [
               Text(
                 'Posts',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18,),
               ),
               Text(
                 'Followers',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, ),
               ),
               Text(
                 'Following',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, ),
               ),
             ],
           ),
