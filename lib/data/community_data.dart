@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 List<Map<String, dynamic>> communityPost = [
   {
     'user_name': 'Jeff Bezos',

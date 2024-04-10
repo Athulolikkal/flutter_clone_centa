@@ -1,4 +1,5 @@
 import 'package:centa_clone/data/auto_scroll_container_data.dart';
+import 'package:centa_clone/screens/view_course_details.dart';
 import 'package:flutter/material.dart';
 
 class TrendingSearchesWidget extends StatelessWidget {
@@ -30,14 +31,23 @@ class TrendingSearchesWidget extends StatelessWidget {
       height: 100,
       width: MediaQuery.of(context).size.width * 0.86,
       child: ListView.builder(
-         physics:const NeverScrollableScrollPhysics() ,
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: groupList.length,
           itemBuilder: (context, index) {
             int totalSearches = groupList[index]['totalSearches'];
             int firstDigit = int.parse(totalSearches.toString()[0]);
             return ListTile(
               onTap: () {
-                print(groupList[index]);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (cntx) => CourseViewDetails(
+                      imageUrl: groupList[index]['image'],
+                      price: groupList[index]['price'],
+                      titleText: groupList[index]['title'],
+                      tag: groupList[index]['tag'],
+                    ),
+                  ),
+                );
               },
               leading: Container(
                 height: 70,
@@ -55,7 +65,9 @@ class TrendingSearchesWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold,fontSize: 14),
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14),
               ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

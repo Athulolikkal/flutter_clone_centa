@@ -1,4 +1,5 @@
 import 'package:centa_clone/data/auto_scroll_container_data.dart';
+import 'package:centa_clone/screens/view_course_details.dart';
 import 'package:flutter/material.dart';
 
 class RecommendationWidget extends StatelessWidget {
@@ -6,7 +7,7 @@ class RecommendationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 360,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -19,71 +20,83 @@ class RecommendationWidget extends StatelessWidget {
   }
 
   Widget _recommendationCard(Map autoScrollData, BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10.0),
-      width: MediaQuery.of(context).size.width * 0.86,
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 254, 254, 254),
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: const Color.fromARGB(255, 240, 237, 237),
-          width: 1,
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (cntx) => CourseViewDetails(
+            imageUrl: autoScrollData['image'],
+            tag: autoScrollData['tag'],
+            price: autoScrollData['price'],
+            titleText: autoScrollData['title'],
+          ),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-            ),
-            child: SizedBox(
-              height: 200,
-              child: Image.asset(
-                autoScrollData['image'],
-                fit: BoxFit.fill,
-              ),
-            ),
+      child: Container(
+        margin: const EdgeInsets.all(10.0),
+        width: MediaQuery.of(context).size.width * 0.86,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 254, 254, 254),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: const Color.fromARGB(255, 240, 237, 237),
+            width: 1,
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.0),
-            child: ListTile(
-              title: Text(
-                autoScrollData['title'],
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: TextStyle(fontWeight: FontWeight.w500),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
               ),
-              subtitle: const Text('Team Centa'),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.grade_sharp,
-                      color: Colors.amber,
-                    ),
-                    Text(
-                        "${autoScrollData['rating']} | ${autoScrollData['number']} ")
-                  ],
+              child: SizedBox(
+                height: 200,
+                child: Image.asset(
+                  autoScrollData['image'],
+                  fit: BoxFit.fill,
                 ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'FREE',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 5.0),
+              child: ListTile(
+                title: Text(
+                  autoScrollData['title'],
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                subtitle: const Text('Team Centa'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.grade_sharp,
+                        color: Colors.amber,
+                      ),
+                      Text(
+                          "${autoScrollData['rating']} | ${autoScrollData['number']} ")
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'FREE',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

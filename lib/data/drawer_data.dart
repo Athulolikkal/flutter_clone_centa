@@ -1,4 +1,3 @@
-import 'package:centa_clone/screens/login_root.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 

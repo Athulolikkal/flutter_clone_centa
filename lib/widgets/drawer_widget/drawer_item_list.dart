@@ -20,7 +20,7 @@ class DrawerItemList extends StatelessWidget {
             initiallyExpanded: true,
             title: Text(
               names[index],
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             shape: const RoundedRectangleBorder(
               side: BorderSide(

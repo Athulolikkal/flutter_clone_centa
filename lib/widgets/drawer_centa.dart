@@ -8,7 +8,7 @@ class CentaDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userInfo = GetStorage().read('user');
+    // final userInfo = GetStorage().read('user');
     return Drawer(
       backgroundColor: Colors.white,
       width: MediaQuery.of(context).size.width * 1,
@@ -27,13 +27,13 @@ class CentaDrawer extends StatelessWidget {
                   },
                   icon: const Icon(Icons.keyboard_arrow_left),
                   color: Colors.black,
-                  iconSize: 35.0,
+                  iconSize: 30.0,
                 ),
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.notifications_outlined),
                   color: Colors.black,
-                  iconSize: 30.0,
+                  iconSize: 28.0,
                 ),
               ],
             ),
@@ -42,7 +42,7 @@ class CentaDrawer extends StatelessWidget {
               centerTitle: true,
               title: Text(
                 'MyCENTA',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
             ),
             pinned: true,
@@ -70,11 +70,11 @@ class CentaDrawer extends StatelessWidget {
                         thickness: 2,
                       ),
                     ),
-                      SizedBox(height: 20,),
+                      SizedBox(height: 18,),
                      Text(
                       'Version',
                       style: TextStyle(
-                          fontSize: 21,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 92, 171, 236),
                           letterSpacing: 5),
@@ -83,7 +83,7 @@ class CentaDrawer extends StatelessWidget {
                      Text(
                       '1.3.26',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 17, 17, 17),
                           letterSpacing: 5),

@@ -1,4 +1,6 @@
+import 'package:centa_clone/screens/home_screen.dart';
 import 'package:centa_clone/screens/root_screen.dart';
+// import 'package:centa_clone/screens/root_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
