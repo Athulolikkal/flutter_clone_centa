@@ -8,12 +8,16 @@ class CourseViewDetails extends StatelessWidget {
   final int price;
   final String titleText;
   final String tag;
+  final double rating;
   const CourseViewDetails(
       {super.key,
       required this.imageUrl,
       required this.price,
       required this.titleText,
-      required this.tag});
+      required this.tag,
+      required this.rating
+     
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +76,7 @@ class CourseViewDetails extends StatelessWidget {
             ),
           ),
 
-          const TabBarViewDetails(),
+           TabBarViewDetails(rating:rating),
         ],
       ),
       bottomNavigationBar: BottomBarViewDetails(

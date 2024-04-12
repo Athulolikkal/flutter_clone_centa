@@ -12,6 +12,7 @@ class BottomBarViewDetails extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Expanded(
                 child: Padding(

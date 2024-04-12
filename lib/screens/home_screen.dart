@@ -1,3 +1,5 @@
+import 'package:centa_clone/screens/all_trending_searches.dart';
+import 'package:centa_clone/screens/recommended_for_you.dart';
 import 'package:centa_clone/widgets/home_screen/auto_scroll_container.dart';
 import 'package:centa_clone/widgets/home_screen/last_container_widget.dart';
 import 'package:centa_clone/widgets/home_screen/recommendation_widget.dart';
@@ -33,7 +35,10 @@ class HomeScreen extends StatelessWidget {
                     Icon(Icons.arrow_outward_outlined),
                   ]),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const AllTrendingSearches()));
+                      },
                       child: const Text(
                         'All Topics',
                         style: TextStyle(fontSize: 14, color: Colors.blue),
@@ -57,7 +62,10 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (cntx) => const RecommendedForYou()));
+                      },
                       child: const Text(
                         'View All',
                         style: TextStyle(fontSize: 14, color: Colors.blue),

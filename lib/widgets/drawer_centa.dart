@@ -1,10 +1,10 @@
 import 'package:centa_clone/widgets/drawer_widget/drawer_header.dart';
 import 'package:centa_clone/widgets/drawer_widget/drawer_item_list.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
+// import 'package:get_storage/get_storage.dart';
 
 class CentaDrawer extends StatelessWidget {
-  const CentaDrawer({Key? key}) : super(key: key);
+  const CentaDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {

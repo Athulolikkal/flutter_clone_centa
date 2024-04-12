@@ -27,6 +27,7 @@ class AutoScrollContainerWidget extends StatelessWidget {
                   price: assetImagePath['price'],
                   titleText: assetImagePath['title'],
                   tag: assetImagePath['tag'],
+                  rating: assetImagePath['rating'],
                 )));
       },
       child: Container(

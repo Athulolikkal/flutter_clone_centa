@@ -21,7 +21,7 @@ class MyGroupWidget extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Container(
-                      height: 90, // Adjust the height here
+                      height: 90, 
 
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),

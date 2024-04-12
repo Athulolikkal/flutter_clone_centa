@@ -36,6 +36,7 @@ class TrendingSearchesWidget extends StatelessWidget {
           itemBuilder: (context, index) {
             int totalSearches = groupList[index]['totalSearches'];
             int firstDigit = int.parse(totalSearches.toString()[0]);
+
             return ListTile(
               onTap: () {
                 Navigator.of(context).push(
@@ -45,6 +46,7 @@ class TrendingSearchesWidget extends StatelessWidget {
                       price: groupList[index]['price'],
                       titleText: groupList[index]['title'],
                       tag: groupList[index]['tag'],
+                      rating: groupList[index]['rating'],
                     ),
                   ),
                 );
@@ -75,7 +77,7 @@ class TrendingSearchesWidget extends StatelessWidget {
                   Text("#${groupList[index]['tag']}"),
                   Text(groupList[index]['totalSearches'] <= 999
                       ? "$totalSearches Searches"
-                      : "${firstDigit}k Searches"), // Add another subtitle here
+                      : "${firstDigit}k Searches"), 
                 ],
               ),
             );

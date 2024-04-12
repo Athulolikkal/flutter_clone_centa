@@ -2,10 +2,10 @@ import 'package:centa_clone/widgets/view_details/about_tab.dart';
 import 'package:centa_clone/widgets/view_details/faqs_tab.dart';
 import 'package:centa_clone/widgets/view_details/reviews_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class TabBarViewDetails extends StatefulWidget {
-  const TabBarViewDetails({super.key});
+  final double rating;
+  const TabBarViewDetails({super.key, required this.rating});
 
   @override
   State<TabBarViewDetails> createState() => _TabBarViewDetailsState();
@@ -14,7 +14,7 @@ class TabBarViewDetails extends StatefulWidget {
 class _TabBarViewDetailsState extends State<TabBarViewDetails>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
@@ -39,17 +39,17 @@ class _TabBarViewDetailsState extends State<TabBarViewDetails>
               Tab(text: "Reviews"),
               Tab(text: "FAQs"),
             ],
+            onTap: (index) {
+              setState(() {
+                _tabController.index = index;
+              });
+            },
           ),
-          // Flexible(
-          //   child: TabBarView(
-          //     controller: _tabController,
-          //     children:const [
-          //       AboutTab(),
-          //       ReviewsTab(),
-          //       FaqsTab()
-          //     ],
-          //   ),
-          // )
+          ...[
+            if (_tabController.index == 0) const AboutTab(),
+            if (_tabController.index == 1) ReviewsTab(rating: widget.rating),
+            if (_tabController.index == 2) const FaqsTab(),
+          ],
         ],
       ),
     );

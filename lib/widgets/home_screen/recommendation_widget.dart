@@ -28,6 +28,7 @@ class RecommendationWidget extends StatelessWidget {
             tag: autoScrollData['tag'],
             price: autoScrollData['price'],
             titleText: autoScrollData['title'],
+            rating: autoScrollData['rating'],
           ),
         ),
       ),
@@ -59,13 +60,13 @@ class RecommendationWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 5.0),
+              padding:const EdgeInsets.symmetric(vertical: 5.0),
               child: ListTile(
                 title: Text(
                   autoScrollData['title'],
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: TextStyle(fontWeight: FontWeight.w500),
+                  style:const TextStyle(fontWeight: FontWeight.w500),
                 ),
                 subtitle: const Text('Team Centa'),
               ),

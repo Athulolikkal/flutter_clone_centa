@@ -18,10 +18,12 @@ class RootScreen extends StatelessWidget {
     MyLearningScreen(),
     CareersScreen()
   ];
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CentaAppBar(),
+      appBar:const CentaAppBar(),
       bottomNavigationBar: const BottomNavigationBarCenta(),
       drawer: const CentaDrawer(),
       body: SafeArea(
