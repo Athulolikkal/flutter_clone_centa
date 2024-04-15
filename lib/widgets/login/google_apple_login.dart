@@ -1,3 +1,4 @@
+import 'package:centa_clone/gql/query/auth.dart';
 import 'package:centa_clone/screens/signup_screen.dart';
 import 'package:centa_clone/services/flutter_services.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,9 @@ class GoogleAppleLogin extends StatelessWidget {
               height: 10,
             ),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+               
+              },
               style: ButtonStyle(
                 minimumSize: MaterialStatePropertyAll(
                     Size(MediaQuery.of(context).size.width * 0.9, 50)),
@@ -109,4 +112,10 @@ class GoogleAppleLogin extends StatelessWidget {
       ),
     );
   }
+
+//   void userLogin ()async{
+//    var userDetails = await GraphQlQueryAuthServices().getAllUsers();
+//    print(userDetails);
+  
+// }
 }
