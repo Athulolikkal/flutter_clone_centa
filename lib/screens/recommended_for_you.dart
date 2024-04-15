@@ -1,5 +1,5 @@
 import 'package:centa_clone/data/auto_scroll_container_data.dart';
-import 'package:centa_clone/widgets/home_screen/recommendation_widget.dart';
+import 'package:centa_clone/screens/view_course_details.dart';
 import 'package:flutter/material.dart';
 
 class RecommendedForYou extends StatelessWidget {
@@ -26,49 +26,143 @@ class RecommendedForYou extends StatelessWidget {
                 size: 30,
               )),
         ),
-        body: GridView.builder(
-            itemCount: recommendation_data.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 16,
-              crossAxisSpacing: 8,
-            ),
-            padding: EdgeInsets.all(10),
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 254, 254, 254),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: const Color.fromARGB(255, 240, 237, 237),
-                    width: 1,
+        body: SizedBox(
+          child: GridView.builder(
+              itemCount: recommendation_data.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20,
+                mainAxisExtent: 320,
+              ),
+              padding: const EdgeInsets.all(10),
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => CourseViewDetails(
+                              imageUrl: recommendation_data[index]['image'],
+                              price: recommendation_data[index]['price'],
+                              titleText: recommendation_data[index]['title'],
+                              tag: recommendation_data[index]['tag'],
+                              rating: recommendation_data[index]['rating'],
+                            )));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 254, 254, 254),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 240, 237, 237),
+                        width: 1,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 1,
+                          offset: const Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(16.0),
+                                  topRight: Radius.circular(16.0)),
+                              child: Image.asset(
+                                recommendation_data[index]['image'],
+                                height: 170,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: const Color.fromARGB(
+                                      255,
+                                      203,
+                                      203,
+                                      203,
+                                    ).withOpacity(0.7),
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Icon(
+                                      Icons.favorite_outline_outlined,
+                                      color: Colors.blue,
+                                      size: 30,
+                                    ),
+                                  )),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(recommendation_data[index]['creator'] ??
+                                  recommendation_data[index]['creator']),
+                              Text(
+                                recommendation_data[index]['title'],
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(),
+                        Padding(
+                          padding: const EdgeInsets.all(9.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  Text(
+                                    "${recommendation_data[index]['rating']} | ${recommendation_data[index]['number']}",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color:
+                                            Color.fromARGB(255, 115, 114, 114),
+                                        fontSize: 16),
+                                  )
+                                ],
+                              ),
+                              Text(
+                                recommendation_data[index]['price'] == 0
+                                    ? 'FREE'
+                                    : "\u20B9 ${recommendation_data[index]['price']}.0",
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 95, 176, 243)),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                     
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Color.fromARGB(255, 186, 184, 184),
-                          width: 2,
-                        ),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.asset(
-                          recommendation_data[index]['image'],
-                          fit: BoxFit.cover,
-                          height: 150,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
-            }));
+                );
+              }),
+        ));
   }
 }

@@ -97,6 +97,7 @@ List<Map<String, dynamic>> recommendation_data = [
     'tag': 'expertmasterclass',
     'totalSearches': 2456,
     'price': 1199,
+    'creator': 'Team Centa',
   },
   {
     "image": 'assets/images/wakelet.png',
@@ -107,6 +108,7 @@ List<Map<String, dynamic>> recommendation_data = [
     'tag': 'freeresource',
     'totalSearches': 1245,
     'price': 0,
+    'creator': 'Team Centa',
   },
   {
     "image": 'assets/images/into_action.png',
@@ -116,5 +118,6 @@ List<Map<String, dynamic>> recommendation_data = [
     'tag': 'selfpacedcourses',
     'totalSearches': 567,
     'price': 799,
+    'creator': 'Alia Bhut',
   },
 ];
