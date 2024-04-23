@@ -1,8 +1,12 @@
 import 'package:centa_clone/gql/query/auth.dart';
+import 'package:centa_clone/gql/query/user.dart';
 import 'package:centa_clone/screens/login_root.dart';
+import 'package:centa_clone/screens/root_screen.dart';
 import 'package:centa_clone/services/generate_referralcode.dart';
+import 'package:centa_clone/widgets/loading_modal.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class SignUpRegisterForm extends StatefulWidget {
@@ -22,7 +26,9 @@ class _SignUpRegisterFormState extends State<SignUpRegisterForm> {
   final _firstName = TextEditingController();
   final _lastName = TextEditingController();
   final _referralCode = TextEditingController();
+  bool loading = false;
   var userRole = null;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -416,6 +422,13 @@ class _SignUpRegisterFormState extends State<SignUpRegisterForm> {
                 child: ElevatedButton(
                     onPressed: () {
                       if (isChecked && _formKey.currentState!.validate()) {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return const AlertModal();
+                              // return const _alertModal();
+                            });
                         userRegister(context);
                       }
                     },
@@ -452,7 +465,7 @@ class _SignUpRegisterFormState extends State<SignUpRegisterForm> {
                       child: const Text(
                         'Sign in here',
                         style: TextStyle(color: Colors.blue),
-                      ))
+                      )),
                 ],
               ),
             ],
@@ -467,12 +480,14 @@ class _SignUpRegisterFormState extends State<SignUpRegisterForm> {
       final email = _emailController.text;
       final phoneNumber = _mobileNumberController.text;
       final selectedRole = userRole;
-      final firstName = _firstName.text;
-      final lastName = _lastName.text;
+      final firstName = _firstName.text.toUpperCase();
+      final lastName = _lastName.text.toUpperCase();
       final password = _passwordController.text;
       final referralCode = _referralCode.text;
 
       if (phoneNumber == null || phoneNumber.isEmpty) {
+        Navigator.of(context).pop();
+
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('please enter your mobile number'),
           margin: EdgeInsets.all(10),
@@ -486,29 +501,66 @@ class _SignUpRegisterFormState extends State<SignUpRegisterForm> {
             (firstName.isNotEmpty) &&
             (lastName.isNotEmpty) &&
             (password.isNotEmpty)) {
-          //checking email id is already present in Db
+          // checking email id is already present in Db
           final isUserIsThere =
-              await GraphQlQueryAuthServices().findUserWithEmail(email: email);
+              await GraphQlQueryUserServices().findUserWithEmail(email: email);
+
           // if email is not in Db
           if (isUserIsThere['status'] == false) {
             //if referral code is not empty then check the referral code is valid or not?
             if (referralCode.isNotEmpty) {
               //need to check is it valid or  not
               //for now sending refferral code is not valid one
+
+              Navigator.of(context).pop();
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text('Refferral code is not valid!'),
                 margin: EdgeInsets.all(10),
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Colors.red,
               ));
+            }
+            //generating referral-code
+            final String generatedReferralCode = await generateReferralCode();
+            final String newReferralCode = 'CEN-' + generatedReferralCode;
+
+            //adding userInfo to DB
+            final registerUser = await GraphQlQueryAuthServices().registerUser(
+              firstName: firstName,
+              lastName: lastName,
+              email: email,
+              phoneNumber: phoneNumber,
+              userRole: selectedRole,
+              passwrod: password,
+              referralCode: newReferralCode,
+            );
+            //if error happend!
+            if (registerUser['error'] == true) {
+              Navigator.of(context).pop();
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(registerUser['message']),
+                margin: const EdgeInsets.all(10),
+                behavior: SnackBarBehavior.floating,
+                backgroundColor: Colors.red,
+              ));
             } else {
-              //generating referral-code
-              final String generatedReferralCode = await generateReferralCode();
-              final String newReferralCode = 'CEN-' + generatedReferralCode;
-              
+              Map<String, dynamic> userDetails = {
+                'name': firstName.toUpperCase() + ' ' + lastName.toUpperCase(),
+                'email': email,
+                'phoneNumber': phoneNumber,
+              };
+
+              //storing details to acccess every where in the project
+              await GetStorage().write('user', userDetails);
+              //navigating to the root screen
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (cntx) => const RootScreen()),
+                (Route<dynamic> route) => false,
+              );
             }
           } else {
             //if email is in Db throwing error message
+            Navigator.of(context).pop();
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content:
                   Text('Email is already exists, Try with another email id'),
@@ -519,6 +571,7 @@ class _SignUpRegisterFormState extends State<SignUpRegisterForm> {
           }
           //if items are not presented then throwing error messagge
         } else {
+          Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text('Complete all the details before sign up'),
             margin: EdgeInsets.all(10),
@@ -528,6 +581,8 @@ class _SignUpRegisterFormState extends State<SignUpRegisterForm> {
         }
       }
     } catch (err) {
+      Navigator.of(context).pop();
+      print(err);
       throw Exception(err);
     }
   }

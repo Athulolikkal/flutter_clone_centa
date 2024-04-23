@@ -1,3 +1,4 @@
+import 'package:bcrypt/bcrypt.dart';
 import 'package:centa_clone/gql/config/graphql_config.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -5,60 +6,61 @@ class GraphQlQueryAuthServices {
   static GraphQLConfig graphQlConfig = GraphQLConfig();
   GraphQLClient client = graphQlConfig.clientToQuery();
 
-  Future<Map<dynamic, dynamic>> findUserWithEmail({required email}) async {
-    try {
-      QueryResult result = await client.query(
-          QueryOptions(fetchPolicy: FetchPolicy.noCache, document: gql('''
-            query findUserByEmail {
-             users(where: {email: {_eq: "$email"}}) {
-                email
-                id
-                first_name
-                last_name
-           
-                   }
-            }
-        ''')));
-
-      if (result.hasException) {
-        throw Exception(result.exception);
-      } else {
-        Map? userDetails = result.data?['users'][0];
-        if (userDetails != null) {
-          return {
-            'userInfo': userDetails,
-            'status': true,
-            'error': false,
-          };
-        } else {
-          return {
-            'status': false,
-            'error': true,
-          };
-        }
-      }
-    } catch (err) {
-      return {
-        'status': false,
-        'error': true,
-      };
-    }
-  }
-
   Future<Map<String, dynamic>> registerUser({
     required firstName,
-    lastName,
-    email,
-    phoneNumber,
-    passwrod,
-    userRole,
+    required lastName,
+    required email,
+    required phoneNumber,
+    required passwrod,
+    required userRole,
+    required referralCode,
   }) async {
     try {
-      return {
-        'error': false,
-      };
+      final String hashedPass = BCrypt.hashpw(passwrod, BCrypt.gensalt());
+      QueryResult result = await client.query(
+          QueryOptions(fetchPolicy: FetchPolicy.noCache, document: gql('''
+mutation addUser {
+  insert_users_one(object: {email: "$email", first_name: "$firstName", last_name: "$lastName", password: "$hashedPass", phone_number: "$phoneNumber",user_role:"$userRole",}){
+    id
+    email  
+  }
+}
+
+''')));
+
+      if (result.hasException) {
+        print(result.exception);
+        return {
+          'error': true,
+          'message':
+              'Failed to add details. Please verify that the details do not already exist in the system.'
+        };
+        // throw Exception(result.exception);
+      } else {
+        Map? userDetails = result.data?['insert_users_one'];
+
+        if (userDetails != null &&
+            userDetails['id'].isNotEmpty &&
+            userDetails['id'] != null) {
+          return {
+            'status': true,
+            'error': false,
+            'userId': userDetails['id'],
+            'email': userDetails['email']
+          };
+        }
+        return {
+          'status': false,
+          'error': false,
+          'messagge': 'Something went wrong please try agin later',
+        };
+      }
     } catch (err) {
-      return {'error': true};
+      print('$err :error');
+      return {
+        'error': true,
+        'message': 'Something went wrong',
+      };
     }
   }
 }

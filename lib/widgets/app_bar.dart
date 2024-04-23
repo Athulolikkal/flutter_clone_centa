@@ -53,10 +53,15 @@ class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
                     )
                   : CircleAvatar(
                       backgroundColor: const Color.fromARGB(255, 240, 238, 238),
-                      backgroundImage: NetworkImage(
-                          userDetails['userProfile'] != null
-                              ? userDetails['userProfile']
-                              : ''),
+                      backgroundImage: userDetails['userProfile'] != null
+                          ? NetworkImage(userDetails['userProfile'])
+                          : null,
+                      child: userDetails['userProfile'] == null
+                          ? Icon(
+                              Icons.person,
+                              color: Colors.blue,
+                            )
+                          : null,
                     ),
             );
           }),
