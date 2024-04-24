@@ -1,6 +1,7 @@
 import 'package:bcrypt/bcrypt.dart';
 import 'package:centa_clone/gql/query/user.dart';
 import 'package:centa_clone/screens/root_screen.dart';
+import 'package:centa_clone/widgets/loading_modal.dart';
 import 'package:centa_clone/widgets/login/google_apple_login.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -141,6 +142,12 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                       if (!openPasswordSection) {
                         verifyEmail();
                       } else {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return const AlertModal();
+                            });
                         signWithEmail(context);
                       }
                     },
@@ -207,6 +214,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
               String lastName = userInfo['last_name'];
               final bool checkPassword = BCrypt.checkpw(_password!, dbPass);
 
+              //if password is correct
               if (checkPassword) {
                 print(checkPassword);
                 Map<String, dynamic> userDetails = {
@@ -223,6 +231,8 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                   (Route<dynamic> route) => false,
                 );
               } else {
+                //if password is not correct
+                Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Invalid password or email'),
                   margin: EdgeInsets.all(10),
@@ -231,6 +241,8 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                 ));
               }
             } else {
+              //email is not presented in DB
+              Navigator.of(context).pop();
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text('Invalid password or email'),
                 margin: EdgeInsets.all(10),

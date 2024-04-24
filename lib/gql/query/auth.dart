@@ -10,17 +10,18 @@ class GraphQlQueryAuthServices {
     required firstName,
     required lastName,
     required email,
-    required phoneNumber,
-    required passwrod,
-    required userRole,
-    required referralCode,
+    phoneNumber,
+    passwrod,
+    userRole,
+    googleSignedIn,
   }) async {
     try {
+      final bool throughGoogle = googleSignedIn != null ? true : false;
       final String hashedPass = BCrypt.hashpw(passwrod, BCrypt.gensalt());
       QueryResult result = await client.query(
           QueryOptions(fetchPolicy: FetchPolicy.noCache, document: gql('''
 mutation addUser {
-  insert_users_one(object: {email: "$email", first_name: "$firstName", last_name: "$lastName", password: "$hashedPass", phone_number: "$phoneNumber",user_role:"$userRole",}){
+  insert_users_one(object: {email: "$email", first_name: "$firstName", last_name: "$lastName", password: "$hashedPass", phone_number: "$phoneNumber",user_role:"$userRole",google_apple_signd:$throughGoogle,}){
     id
     email  
   }

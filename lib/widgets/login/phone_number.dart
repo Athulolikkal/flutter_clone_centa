@@ -1,6 +1,5 @@
 import 'package:centa_clone/widgets/login/google_apple_login.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoginWithPhoneNumber extends StatelessWidget {
   const LoginWithPhoneNumber({super.key});
@@ -70,16 +69,15 @@ class LoginWithPhoneNumber extends StatelessWidget {
                           fontSize: 18, fontWeight: FontWeight.w400))),
                   child: const Text('Verify With OTP')),
             ),
-             Text(
+            const Text(
               '(Recommended for existing CENTA\u00AE Community Members from India)',
               style: TextStyle(
-                color: Color.fromARGB(255, 110, 115, 129),
-                fontSize: 14,
-                fontWeight: FontWeight.w400
-              ),
+                  color: Color.fromARGB(255, 110, 115, 129),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400),
               textAlign: TextAlign.center,
             ),
-            GoogleAppleLogin()
+            const GoogleAppleLogin()
           ],
         ),
       ),

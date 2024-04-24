@@ -532,7 +532,6 @@ class _SignUpRegisterFormState extends State<SignUpRegisterForm> {
               phoneNumber: phoneNumber,
               userRole: selectedRole,
               passwrod: password,
-              referralCode: newReferralCode,
             );
             //if error happend!
             if (registerUser['error'] == true) {

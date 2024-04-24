@@ -51,15 +51,16 @@ class GoogleAppleSignUp extends StatelessWidget {
               children: [
                 OutlinedButton(
                   onPressed: () {
-                    // print('google signup called');
+                    
                     FirebaseService.signInwithGoogle(context);
                   },
                   style: ButtonStyle(
                     minimumSize: MaterialStatePropertyAll(
                         Size(MediaQuery.of(context).size.width * 0.4, 50)),
-                    foregroundColor: const MaterialStatePropertyAll(Colors.black),
-                    side: MaterialStateProperty.all(
-                        const BorderSide(color: Color.fromARGB(255, 208, 206, 206), width: 1.5)),
+                    foregroundColor:
+                        const MaterialStatePropertyAll(Colors.black),
+                    side: MaterialStateProperty.all(const BorderSide(
+                        color: Color.fromARGB(255, 208, 206, 206), width: 1.5)),
                     elevation: MaterialStateProperty.all(10),
                   ),
                   child: const Row(
@@ -78,9 +79,10 @@ class GoogleAppleSignUp extends StatelessWidget {
                   style: ButtonStyle(
                     minimumSize: MaterialStatePropertyAll(
                         Size(MediaQuery.of(context).size.width * 0.4, 50)),
-                    side: MaterialStateProperty.all(
-                        const BorderSide(color: Color.fromARGB(255, 208, 206, 206), width: 1.5)),
-                    foregroundColor: const MaterialStatePropertyAll(Colors.black),
+                    side: MaterialStateProperty.all(const BorderSide(
+                        color: Color.fromARGB(255, 208, 206, 206), width: 1.5)),
+                    foregroundColor:
+                        const MaterialStatePropertyAll(Colors.black),
                     elevation: MaterialStateProperty.all(10),
                   ),
                   child: const Row(

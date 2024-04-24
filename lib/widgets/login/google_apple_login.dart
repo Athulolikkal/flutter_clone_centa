@@ -1,4 +1,3 @@
-import 'package:centa_clone/gql/query/auth.dart';
 import 'package:centa_clone/screens/signup_screen.dart';
 import 'package:centa_clone/services/flutter_services.dart';
 import 'package:flutter/material.dart';
