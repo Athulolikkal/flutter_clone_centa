@@ -1,10 +1,11 @@
+import 'package:centa_clone/data/auto_scroll_container_data.dart';
 import 'package:centa_clone/screens/all_trending_searches.dart';
 import 'package:centa_clone/screens/recommended_for_you.dart';
 import 'package:centa_clone/widgets/home_screen/auto_scroll_container.dart';
 import 'package:centa_clone/widgets/home_screen/last_container_widget.dart';
-import 'package:centa_clone/widgets/home_screen/recommendation_widget.dart';
 import 'package:centa_clone/widgets/home_screen/start_widget.dart';
 import 'package:centa_clone/widgets/home_screen/trending_searches.dart';
+import 'package:centa_clone/widgets/learning_screen/items_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                    Icon(Icons.arrow_outward_outlined),
+                    Icon(Icons.trending_up_outlined),
                   ]),
                   TextButton(
                       onPressed: () {
@@ -74,8 +75,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-
-          const RecommendationWidget(),
+          ItemsShowCard(courseDetails: recommendation_data),
           const StartContainerWidget(),
           const ContainerLastWidget(),
         ],

@@ -6,7 +6,6 @@ class GraphQlQueryUserServices {
   GraphQLClient client = graphQLConfig.clientToQuery();
   Future<Map<dynamic, dynamic>> findUserWithEmail({required email}) async {
     try {
-     
       QueryResult result = await client.query(
           QueryOptions(fetchPolicy: FetchPolicy.noCache, document: gql('''
             query findUserByEmail {
@@ -16,7 +15,7 @@ class GraphQlQueryUserServices {
                 first_name
                 last_name
                 password
-           
+                google_apple_signd
                    }
             }
         ''')));

@@ -8,14 +8,15 @@ class AutoScrollContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 230,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: autoScrollDataCourse.length,
-          itemBuilder: (context, index) {
-            return _buildContainer(autoScrollDataCourse[index], context);
-          },
-        ));
+      height: 230,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: autoScrollDataCourse.length,
+        itemBuilder: (context, index) {
+          return _buildContainer(autoScrollDataCourse[index], context);
+        },
+      ),
+    );
   }
 
   Widget _buildContainer(Map assetImagePath, BuildContext context) {

@@ -24,7 +24,7 @@ class BottomNavigationBarCenta extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: Icon(Icons.group_outlined), label: 'Community'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.menu_book_outlined), label: 'Learning'),
+                  icon: Icon(Icons.auto_stories_outlined), label: 'Learning'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.book_online_outlined), label: 'My Learning'),
               BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Careers'),

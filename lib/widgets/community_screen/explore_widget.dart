@@ -92,7 +92,10 @@ class ExploreWidget extends StatelessWidget {
                           ],
                         );
                       } else {
-                        return const CircularProgressIndicator(); // Placeholder while loading
+                        return const Align(
+                            alignment: Alignment.center,
+                            child: Text('loading...'));
+                        // return const CircularProgressIndicator();
                       }
                     },
                   ),
@@ -109,9 +112,6 @@ class ExploreWidget extends StatelessWidget {
     );
   }
 }
-
-
-
 
 // import 'package:centa_clone/data/community_data.dart';
 // import 'package:flutter/material.dart';

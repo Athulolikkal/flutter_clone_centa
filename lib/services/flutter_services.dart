@@ -1,7 +1,7 @@
 import 'package:centa_clone/gql/query/auth.dart';
 import 'package:centa_clone/gql/query/user.dart';
 import 'package:centa_clone/screens/root_screen.dart';
-import 'package:centa_clone/widgets/loading_modal.dart';
+// import 'package:centa_clone/widgets/loading_modal.dart';
 // import 'package:centa_clone/screens/root_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +54,21 @@ class FirebaseService {
             phoneNumber: userDetails['phoneNumber'],
             googleSignedIn: true,
           );
+          await GetStorage().write('user', userDetails);
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (cntx) => const RootScreen()),
+            (Route<dynamic> route) => false,
+          );
+        } else {
+          if (userIsPresent['userInfo']['google_apple_signd'] == true) {
+            await GetStorage().write('user', userDetails);
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (cntx) => const RootScreen()),
+              (Route<dynamic> route) => false,
+            );
+          } else {
+            signOutFromGoogle();
+          }
         }
         await GetStorage().write('user', userDetails);
         Navigator.of(context).pushAndRemoveUntil(

@@ -10,12 +10,24 @@ class AllTrendingSearches extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
-        title: const Text(
-          'All Trending Searches\u{1F4C8}',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
+        // title: const Text(
+        //   'All Trending Searches\u{1F4C8}',
+        //   style: TextStyle(
+        //     fontWeight: FontWeight.bold,
+        //     fontSize: 18,
+        //   ),
+        // ),
+        title: const Row(
+          children: [
+            Text(
+              'All Trending Searches',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+            Icon(Icons.trending_up_outlined)
+          ],
         ),
         leading: IconButton(
             onPressed: () {

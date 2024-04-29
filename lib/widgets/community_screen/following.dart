@@ -1,15 +1,14 @@
-import 'package:centa_clone/widgets/community_screen/explore_widget.dart';
 import 'package:flutter/material.dart';
 
 class FollowingWidget extends StatelessWidget {
-   final void Function(int) changeTabIndex;
-  const FollowingWidget({super.key,required this.changeTabIndex});
+  final void Function(int) changeTabIndex;
+  const FollowingWidget({super.key, required this.changeTabIndex});
 
   @override
   Widget build(BuildContext context) {
     bool isNoData = true;
     return Padding(
-      padding:const EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: SizedBox(
         child: isNoData
             ? Column(
@@ -31,12 +30,12 @@ class FollowingWidget extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                    //  Navigator.of(context).push(
-                    //     MaterialPageRoute(
-                    //       builder: (context) => ExploreWidget(),
-                    //     ),
-                    //   );
-                     changeTabIndex(0);
+                      //  Navigator.of(context).push(
+                      //     MaterialPageRoute(
+                      //       builder: (context) => ExploreWidget(),
+                      //     ),
+                      //   );
+                      changeTabIndex(0);
                     },
                     child: const Text(
                       "Let's explore",

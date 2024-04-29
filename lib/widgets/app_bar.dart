@@ -29,11 +29,17 @@ class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
             icon: const Icon(Icons.search),
             iconSize: 30.0,
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_none),
-            iconSize: 30.0,
-          ),
+          ValueListenableBuilder(
+              valueListenable: RootScreen.selectedBottomIndex,
+              builder: (BuildContext ctx, int updatedIndex, Widget? _) {
+                return IconButton(
+                  onPressed: () {},
+                  icon: Icon(RootScreen.selectedBottomIndex.value != 4
+                      ? Icons.notifications_none
+                      : Icons.tune_outlined),
+                  iconSize: 30.0,
+                );
+              }),
           Builder(builder: (context) {
             return GestureDetector(
               onTap: () {
