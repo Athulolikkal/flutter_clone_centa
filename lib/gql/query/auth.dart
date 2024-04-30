@@ -14,14 +14,17 @@ class GraphQlQueryAuthServices {
     passwrod,
     userRole,
     googleSignedIn,
+    profileImage,
   }) async {
+    print("$firstName $lastName $email $phoneNumber $profileImage , on query");
     try {
-      final bool throughGoogle = googleSignedIn != null ? true : false;
-      final String hashedPass = BCrypt.hashpw(passwrod, BCrypt.gensalt());
+      final bool throughGoogle = googleSignedIn == true ? true : false;
+      final hashedPass =
+          passwrod != null ? BCrypt.hashpw(passwrod, BCrypt.gensalt()) : null;
       QueryResult result = await client.query(
           QueryOptions(fetchPolicy: FetchPolicy.noCache, document: gql('''
 mutation addUser {
-  insert_users_one(object: {email: "$email", first_name: "$firstName", last_name: "$lastName", password: "$hashedPass", phone_number: "$phoneNumber",user_role:"$userRole",google_apple_signd:$throughGoogle,}){
+  insert_users_one(object: {email: "$email", first_name: "$firstName", last_name: "$lastName", password:${hashedPass != null ? '"$hashedPass"' : null}, user_role: ${userRole != null ? '"$userRole"' : null},phone_number:${phoneNumber != null ? '"$phoneNumber"' : null}, profile_image:${profileImage != null ? '"$profileImage"' : null},google_apple_signd:$throughGoogle,}){
     id
     email  
   }

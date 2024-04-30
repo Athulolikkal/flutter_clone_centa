@@ -38,7 +38,7 @@ Widget _itemCard(Map course, BuildContext context) {
         ),
       ),
     child: Container(
-      width: 350,
+      width: 340,
       margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),

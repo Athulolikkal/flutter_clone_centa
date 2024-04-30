@@ -119,7 +119,7 @@ class JobCard extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
-                child: _descriptionList(context, jobInfo['description']),
+                child: descriptionList(context, jobInfo['description']),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
@@ -143,15 +143,13 @@ class JobCard extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget _descriptionList(BuildContext context, List jobDescription) {
+  static Widget descriptionList(BuildContext cntx, List jobDescription) {
   return SizedBox(
     height: 50,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: jobDescription.length,
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (BuildContext cntx, int index) {
         return Container(
           margin: const EdgeInsets.all(5),
           decoration: BoxDecoration(
@@ -167,3 +165,5 @@ Widget _descriptionList(BuildContext context, List jobDescription) {
     ),
   );
 }
+}
+
