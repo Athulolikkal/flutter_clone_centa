@@ -22,7 +22,7 @@ class NoRecords extends StatelessWidget {
           const Text(
             'Oh!',
             style: TextStyle(
-                fontSize: 28, fontWeight: FontWeight.w800, color: Colors.grey),
+                fontSize: 24, fontWeight: FontWeight.w800, color: Colors.grey),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -30,7 +30,7 @@ class NoRecords extends StatelessWidget {
               notLearning
                   ? 'You don\'t seem to have any registration here'
                   : 'It seems that you are yet to start your learning journey! Let\'s explore some resources.',
-              style: const TextStyle(fontSize: 18, color: Colors.grey),
+              style: const TextStyle(fontSize: 16, color: Colors.grey),
               textAlign: TextAlign.center,
             ),
           ),
@@ -43,7 +43,7 @@ class NoRecords extends StatelessWidget {
               style: const ButtonStyle(
                   side: MaterialStatePropertyAll(
                     BorderSide(
-                        color: Color.fromARGB(255, 129, 187, 235), width: 2),
+                        color: Color.fromARGB(255, 129, 187, 235), width: 1),
                   ),
                   foregroundColor: MaterialStatePropertyAll(
                     Color.fromARGB(255, 129, 187, 235),
@@ -51,7 +51,7 @@ class NoRecords extends StatelessWidget {
                   minimumSize: MaterialStatePropertyAll(Size(180, 50))),
               child: const Text(
                 'Explore Learning Resources',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),
               ),
             ),
           )

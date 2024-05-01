@@ -20,13 +20,13 @@ class MyJobsWidget extends StatelessWidget {
           const Text(
             'Oh!',
             style: TextStyle(
-                fontSize: 28, fontWeight: FontWeight.w800, color: Colors.grey),
+                fontSize: 24, fontWeight: FontWeight.w800, color: Colors.grey),
           ),
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
               'It seems that you are yet to apply for jobs!',
-              style: TextStyle(fontSize: 18, color: Colors.grey),
+              style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
           Padding(
@@ -38,15 +38,15 @@ class MyJobsWidget extends StatelessWidget {
               style: const ButtonStyle(
                   side: MaterialStatePropertyAll(
                     BorderSide(
-                        color: Color.fromARGB(255, 129, 187, 235), width: 2),
+                        color: Color.fromARGB(255, 129, 187, 235), width: 1),
                   ),
                   foregroundColor: MaterialStatePropertyAll(
                     Color.fromARGB(255, 129, 187, 235),
                   ),
-                  minimumSize: MaterialStatePropertyAll(Size(150, 50))),
+                  minimumSize: MaterialStatePropertyAll(Size(150, 40))),
               child: const Text(
                 'Apply Now',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),
               ),
             ),
           )

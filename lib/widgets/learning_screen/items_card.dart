@@ -11,7 +11,7 @@ class ItemsShowCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 340,
+      height: 280,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -26,24 +26,24 @@ class ItemsShowCard extends StatelessWidget {
 
 Widget _itemCard(Map course, BuildContext context) {
   return GestureDetector(
-     onTap: () => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (cntx) => CourseViewDetails(
-            imageUrl: course['image'],
-            tag: course['tag'],
-            price: course['price'],
-            titleText: course['title'],
-            rating: course['rating'],
-          ),
+    onTap: () => Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (cntx) => CourseViewDetails(
+          imageUrl: course['image'],
+          tag: course['tag'],
+          price: course['price'],
+          titleText: course['title'],
+          rating: course['rating'],
         ),
       ),
+    ),
     child: Container(
-      width: 340,
+      width: 320,
       margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
         border: Border.all(
-          color: Color.fromARGB(255, 196, 193, 192),
+          color: const Color.fromARGB(255, 196, 193, 192),
           width: 1.0, // Border width
         ),
       ),
@@ -59,9 +59,12 @@ Widget _itemCard(Map course, BuildContext context) {
                 bottomRight: Radius.circular(10),
               ),
               child: SizedBox(
+                
                 child: Image.asset(
                   course['image'],
-                  fit: BoxFit.contain,
+                  height: 150,
+                  width: 320,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
@@ -87,17 +90,14 @@ Widget _itemCard(Map course, BuildContext context) {
                   )),
             )
           ]),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5.0),
-            child: ListTile(
-              title: Text(
-                course['title'],
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: const TextStyle(fontWeight: FontWeight.w500),
-              ),
-              subtitle: Text(course['creator']),
+          ListTile(
+            title: Text(
+              course['title'],
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 14),
             ),
+            subtitle: Text(course['creator'],style:const TextStyle(fontSize: 12),),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -112,7 +112,7 @@ Widget _itemCard(Map course, BuildContext context) {
                         color: Colors.amber,
                       ),
                     if (course['date'] != null && course['rating'] <= 1)
-                      Text(course['date']),
+                      Text(course['date'],style:const TextStyle(fontSize: 12)),
                     if (course['rating'] > 0)
                       Text("${course['rating']} | ${course['number']}"),
                   ],
@@ -120,7 +120,7 @@ Widget _itemCard(Map course, BuildContext context) {
                 Text(
                   course['price'] == 0 ? 'FREE' : "\u20B9 ${course['price']}.0",
                   style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 95, 176, 243)),
                 ),

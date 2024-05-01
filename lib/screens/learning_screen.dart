@@ -36,14 +36,14 @@ class LearningScreen extends StatelessWidget {
                       learningHeaders[index],
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                     ),
                     const Text(
                       'View All',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 14,
                         color: Color.fromARGB(255, 64, 160, 240),
                       ),
                     ),

@@ -23,7 +23,7 @@ class AllTrendingSearches extends StatelessWidget {
               'All Trending Searches',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontSize: 17,
               ),
             ),
             Icon(Icons.trending_up_outlined)
@@ -35,7 +35,7 @@ class AllTrendingSearches extends StatelessWidget {
             },
             icon: const Icon(
               Icons.keyboard_arrow_left,
-              size: 30,
+              size: 32,
             )),
       ),
       body: Padding(
@@ -62,7 +62,7 @@ class AllTrendingSearches extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: Container(
-                            height: 100,
+                            height: 80,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.black,
@@ -76,22 +76,24 @@ class AllTrendingSearches extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          flex: 5,
+                          flex: 7,
                           child: ListTile(
                             title: Text(
                               trendingSearchesList[index]['title'],
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
+                                  fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                             subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
                                   "Team Centa",
+                                  style: TextStyle(fontSize: 14),
                                 ),
                                 Text(
                                   "${trendingSearchesList[index]['totalSearches']} Searches",
+                                  style: const TextStyle(fontSize: 14),
                                 ),
                               ],
                             ),

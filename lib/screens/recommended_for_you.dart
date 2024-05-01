@@ -33,7 +33,7 @@ class RecommendedForYou extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 20,
-                mainAxisExtent: 320,
+                mainAxisExtent: 230,
               ),
               padding: const EdgeInsets.all(10),
               itemBuilder: (BuildContext context, int index) {
@@ -74,11 +74,14 @@ class RecommendedForYou extends StatelessWidget {
                           children: [
                             ClipRRect(
                               borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(16.0),
-                                  topRight: Radius.circular(16.0)),
+                                topLeft: Radius.circular(10.0),
+                                topRight: Radius.circular(10.0),
+                                bottomLeft: Radius.circular(10.0),
+                                bottomRight: Radius.circular(10.0),
+                              ),
                               child: Image.asset(
                                 recommendation_data[index]['image'],
-                                height: 170,
+                                height: 120,
                                 width: double.infinity,
                                 fit: BoxFit.cover,
                               ),
@@ -100,33 +103,39 @@ class RecommendedForYou extends StatelessWidget {
                                     child: Icon(
                                       Icons.favorite_outline_outlined,
                                       color: Colors.blue,
-                                      size: 30,
+                                      size: 20,
                                     ),
                                   )),
                             )
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(recommendation_data[index]['creator'] ??
-                                  recommendation_data[index]['creator']),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                recommendation_data[index]['creator'] ??
+                                    recommendation_data[index]['creator'],
+                                style: const TextStyle(fontSize: 12),
+                              ),
                               Text(
                                 recommendation_data[index]['title'],
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 16),
+                                    fontWeight: FontWeight.w500, fontSize: 12),
                               ),
                             ],
                           ),
                         ),
                         const Divider(),
                         Padding(
-                          padding: const EdgeInsets.all(9.0),
+                          padding: const EdgeInsets.symmetric(horizontal:  9.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -135,6 +144,7 @@ class RecommendedForYou extends StatelessWidget {
                                   const Icon(
                                     Icons.star,
                                     color: Colors.amber,
+                                    size: 18,
                                   ),
                                   Text(
                                     "${recommendation_data[index]['rating']} | ${recommendation_data[index]['number']}",
@@ -142,7 +152,7 @@ class RecommendedForYou extends StatelessWidget {
                                         fontWeight: FontWeight.w600,
                                         color:
                                             Color.fromARGB(255, 115, 114, 114),
-                                        fontSize: 16),
+                                        fontSize: 13),
                                   )
                                 ],
                               ),
@@ -151,7 +161,7 @@ class RecommendedForYou extends StatelessWidget {
                                     ? 'FREE'
                                     : "\u20B9 ${recommendation_data[index]['price']}.0",
                                 style: const TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 13,
                                     fontWeight: FontWeight.bold,
                                     color: Color.fromARGB(255, 95, 176, 243)),
                               ),

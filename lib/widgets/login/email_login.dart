@@ -208,33 +208,46 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
             if (isUserIsThere['error'] == false) {
               Map userInfo = isUserIsThere['userInfo'];
 
-              String dbPass = userInfo['password'];
+              String? dbPass = userInfo['password'];
               String email = userInfo['email'];
               String firstName = userInfo['first_name'];
               String lastName = userInfo['last_name'];
-              final bool checkPassword = BCrypt.checkpw(_password!, dbPass);
+              //checking password is present in db?
 
-              //if password is correct
-              if (checkPassword) {
-                print(checkPassword);
-                Map<String, dynamic> userDetails = {
-                  'name':
-                      firstName.toUpperCase() + ' ' + lastName.toUpperCase(),
-                  'email': email,
-                };
+              if (dbPass != null) {
+                final bool checkPassword = BCrypt.checkpw(_password!, dbPass);
 
-                //storing details to acccess every where in the project
-                await GetStorage().write('user', userDetails);
-                //navigating to the root screen
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (cntx) => const RootScreen()),
-                  (Route<dynamic> route) => false,
-                );
+                //if password is correct
+                if (checkPassword) {
+                  print(checkPassword);
+                  Map<String, dynamic> userDetails = {
+                    'name':
+                        firstName.toUpperCase() + ' ' + lastName.toUpperCase(),
+                    'email': email,
+                  };
+
+                  //storing details to acccess every where in the project
+                  await GetStorage().write('user', userDetails);
+                  //navigating to the root screen
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (cntx) => const RootScreen()),
+                    (Route<dynamic> route) => false,
+                  );
+                } else {
+                  //if password is not correct
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('Invalid password or email'),
+                    margin: EdgeInsets.all(10),
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Color.fromARGB(255, 26, 25, 25),
+                  ));
+                }
               } else {
-                //if password is not correct
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Invalid password or email'),
+                  content: Text(
+                      'Something went wrong please try again with another email'),
                   margin: EdgeInsets.all(10),
                   behavior: SnackBarBehavior.floating,
                   backgroundColor: Color.fromARGB(255, 26, 25, 25),

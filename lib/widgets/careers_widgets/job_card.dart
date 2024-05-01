@@ -21,12 +21,12 @@ class JobCard extends StatelessWidget {
         },
         child: Container(
           margin: const EdgeInsets.only(top: 10),
-          height: 240,
+          height: 220,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(15),
               border: Border.all(
-                color: const Color.fromARGB(255, 196, 193, 192),
+                color: Color.fromARGB(255, 219, 218, 218),
                 width: 1.0,
               )),
           child: Column(
@@ -36,12 +36,13 @@ class JobCard extends StatelessWidget {
                   jobInfo['title'],
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 14),
                 ),
                 subtitle: Text(
                   jobInfo['sub_title'],
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
+                   style: const TextStyle(fontSize: 12),
                 ),
                 trailing: SizedBox(
                   height: 80,
@@ -91,7 +92,7 @@ class JobCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: Divider(
                   thickness: 1.5,
-                  color: Color.fromARGB(255, 213, 210, 210),
+                  color:Color.fromARGB(255, 219, 218, 218),
                 ),
               ),
               Padding(
@@ -104,31 +105,31 @@ class JobCard extends StatelessWidget {
                     const Icon(
                       Icons.work,
                       color: Color.fromARGB(255, 100, 100, 100),
-                      size: 28,
+                      size: 22,
                     ),
                     const SizedBox(
-                      width: 10,
+                      width: 5,
                     ),
                     Text(
                       "${jobInfo['experience']} experience",
-                      style: const TextStyle(fontSize: 16, color: Colors.black),
+                      style: const TextStyle(fontSize: 14, color: Colors.black),
                     )
                   ],
                 ),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
+                    const EdgeInsets.symmetric(horizontal: 15.0, vertical:2 ),
                 child: descriptionList(context, jobInfo['description']),
               ),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 2),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
                       'View Details',
-                      style: TextStyle(color: Colors.blue),
+                      style: TextStyle(color: Colors.blue,fontSize: 12),
                     ),
                     Icon(
                       Icons.keyboard_arrow_right,
@@ -145,7 +146,7 @@ class JobCard extends StatelessWidget {
   }
   static Widget descriptionList(BuildContext cntx, List jobDescription) {
   return SizedBox(
-    height: 50,
+    height: 45,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: jobDescription.length,
@@ -158,7 +159,7 @@ class JobCard extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Center(child: Text(jobDescription[index])),
+            child: Center(child: Text(jobDescription[index],style: TextStyle(fontSize: 12),)),
           ),
         );
       },

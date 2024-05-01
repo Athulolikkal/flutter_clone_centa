@@ -11,6 +11,7 @@ class BottomNavigationBarCenta extends StatelessWidget {
         builder: (BuildContext ctx, int updatedIndex, Widget? _) {
           return BottomNavigationBar(
             backgroundColor: Colors.white,
+            selectedFontSize: 12,
             type: BottomNavigationBarType.fixed,
             currentIndex: updatedIndex,
             onTap: (index) {
@@ -29,6 +30,9 @@ class BottomNavigationBarCenta extends StatelessWidget {
                   icon: Icon(Icons.book_online_outlined), label: 'My Learning'),
               BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Careers'),
             ],
+            unselectedLabelStyle:const TextStyle(
+              fontWeight: FontWeight.bold
+            ),
           );
         });
   }

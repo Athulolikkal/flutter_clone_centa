@@ -94,7 +94,7 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
                           Text(
                             widget.careerInfo['title'],
                             style: const TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -104,9 +104,9 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
                           Text(
                             widget.careerInfo['sub_title'],
                             style: const TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w500,
-                                color: Color.fromARGB(255, 75, 72, 72)),
+                                color: Color.fromARGB(255, 134, 134, 134)),
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 15),
@@ -115,7 +115,7 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
                                 const Icon(
                                   Icons.work_outline_sharp,
                                   color: Color.fromARGB(255, 87, 87, 87),
-                                  size: 30,
+                                  size: 22,
                                 ),
                                 const SizedBox(
                                   width: 10,
@@ -123,7 +123,7 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
                                 Text(
                                   "${widget.careerInfo['experience']} experience",
                                   style: const TextStyle(
-                                      fontSize: 16, color: Colors.black),
+                                      fontSize: 14, color: Colors.black),
                                 )
                               ],
                             ),
@@ -133,7 +133,7 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
                               const Icon(
                                 Icons.date_range_sharp,
                                 color: Color.fromARGB(255, 87, 87, 87),
-                                size: 30,
+                                size: 22,
                               ),
                               const SizedBox(
                                 width: 10,
@@ -141,25 +141,25 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
                               Text(
                                 "Apply by ${widget.careerInfo['apply_by']}",
                                 style: const TextStyle(
-                                    fontSize: 16, color: Colors.black),
+                                    fontSize: 14, color: Colors.black),
                               ),
                             ],
                           ),
                           const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 20),
+                            padding: EdgeInsets.symmetric(vertical: 15),
                             child: Divider(
-                              color: Color.fromARGB(255, 87, 87, 87),
-                              thickness: 0.5,
+                              color: Color.fromARGB(255, 208, 206, 206),
+                              thickness: 1,
                             ),
                           ),
                           //second section
                           const Text(
                             'About the Job',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 10,
                           ),
                           Visibility(
                             visible: widget.careerInfo['location'] != null
@@ -170,41 +170,41 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
                                 const Text(
                                   'Location:  ',
                                   style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text("${widget.careerInfo['location']}",
                                     style: const TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w400)),
                               ],
                             ),
                           ),
                           const SizedBox(
-                            height: 10,
+                            height: 5,
                           ),
                           //Experience
                           const Text(
                             'Experience :',
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                                fontSize: 14, fontWeight: FontWeight.bold),
                           ),
                           const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Text(
                               '1. Min. 03 yrs of teaching in CBSE Schools for Grade VII to X',
                               style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w400),
+                                  fontSize: 14, fontWeight: FontWeight.w400),
                             ),
                           ),
                           const SizedBox(
-                            height: 10,
+                            height: 5,
                           ),
                           //Duties
                           const Text(
                             'Duties & Responsibilities',
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                                fontSize: 14, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(
                             height: 5,
@@ -216,31 +216,34 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
                               child: Text(
                                 "${i + 1} . ${duties[i]}",
                                 style: const TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w400),
+                                    fontSize: 14, fontWeight: FontWeight.w400),
                               ),
                             ),
                           const SizedBox(
-                            height: 15,
+                            height: 10,
                           ),
                           //About Institute
                           const Text(
                             'About the Institute',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Text(
-                                "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. "),
+                                "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. ",
+                                style: TextStyle(fontSize: 14),
+                                ),
+                         
                           ),
                           const SizedBox(
-                            height: 10,
+                            height: 5,
                           ),
                           //Who can apply
                           const Text(
                             'Who can apply',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
 
                           Padding(
@@ -249,20 +252,20 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
                                 context, ['Middle School']),
                           ),
                           const SizedBox(
-                            height: 10,
+                            height: 5,
                           ),
                           //Number of Openings
                           const Text(
                             'Number of Openings',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               '${widget.careerInfo['total_openings']}',
                               style: const TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                                  fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ],
