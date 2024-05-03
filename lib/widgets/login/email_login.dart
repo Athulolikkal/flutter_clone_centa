@@ -199,7 +199,12 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
       bool isMatched = emailRegex.hasMatch(_email!);
       if (isMatched) {
-        if (_password!.isNotEmpty && _password != null && _password != '') {
+        print(_password);
+        if (_password!.isNotEmpty &&
+            _password != null &&
+            _password != '' &&
+            _password!.length > 4 &&
+            _password!.length < 20) {
           String trimmedValue = _password!.trim();
           if (trimmedValue.length > 4 && trimmedValue.length < 20) {
             var isUserIsThere = await GraphQlQueryUserServices()
@@ -264,6 +269,14 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
               ));
             }
           }
+        } else {
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Please enter the valid password'),
+            margin: EdgeInsets.all(10),
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Color.fromARGB(255, 26, 25, 25),
+          ));
         }
       } else {
         setState(() {

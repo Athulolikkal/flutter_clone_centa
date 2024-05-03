@@ -16,7 +16,6 @@ class GraphQlQueryAuthServices {
     googleSignedIn,
     profileImage,
   }) async {
-    print("$firstName $lastName $email $phoneNumber $profileImage , on query");
     try {
       final bool throughGoogle = googleSignedIn == true ? true : false;
       final hashedPass =
@@ -33,7 +32,6 @@ mutation addUser {
 ''')));
 
       if (result.hasException) {
-        print(result.exception);
         return {
           'error': true,
           'message':

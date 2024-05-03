@@ -15,12 +15,14 @@ class CourseViewDetails extends StatelessWidget {
       required this.price,
       required this.titleText,
       required this.tag,
-      required this.rating
-     
-      });
+      required this.rating});
 
   @override
   Widget build(BuildContext context) {
+    Future<void> _refresh() async {
+      return Future.delayed(Duration(seconds: 2));
+    }
+
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
@@ -45,39 +47,42 @@ class CourseViewDetails extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.share_outlined)),
         ],
       ),
-      body: ListView(
-        shrinkWrap: true,
-        children: [
-          //clip path is using for getting the curve shape and also we need to try the code for getting curve shape
-          ClipPath(
-            clipper: CustomCurvedEdges(),
-            child: Image.asset(imageUrl),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-            child: Text(
-              tag.toUpperCase(),
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 11,
+      body: RefreshIndicator(
+        onRefresh: _refresh,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            //clip path is using for getting the curve shape and also we need to try the code for getting curve shape
+            ClipPath(
+              clipper: CustomCurvedEdges(),
+              child: Image.asset(imageUrl),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+              child: Text(
+                tag.toUpperCase(),
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 11,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-            child: Text(
-              titleText,
-              style: const TextStyle(
-                color: Color.fromARGB(255, 39, 154, 207),
-                fontWeight: FontWeight.bold,
-                fontSize: 17,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+              child: Text(
+                titleText,
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 39, 154, 207),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                ),
               ),
             ),
-          ),
 
-           TabBarViewDetails(rating:rating),
-        ],
+            TabBarViewDetails(rating: rating),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomBarViewDetails(
         priceOfProduct: price,
