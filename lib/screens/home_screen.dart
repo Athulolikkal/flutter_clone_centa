@@ -1,3 +1,4 @@
+import 'package:centa_clone/applcation/bloc/home_screen/home_screen_bloc.dart';
 import 'package:centa_clone/data/auto_scroll_container_data.dart';
 import 'package:centa_clone/screens/all_trending_searches.dart';
 import 'package:centa_clone/screens/recommended_for_you.dart';
@@ -7,12 +8,18 @@ import 'package:centa_clone/widgets/home_screen/start_widget.dart';
 import 'package:centa_clone/widgets/home_screen/trending_searches.dart';
 import 'package:centa_clone/widgets/learning_screen/items_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    //calling after building the widget
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<HomeScreenBloc>(context)
+          .add(const HomeScreenEvent.getAutoScrollDataInformation());
+    });
     return SafeArea(
         child: Padding(
       padding: const EdgeInsets.all(10.0),

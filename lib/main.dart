@@ -1,8 +1,11 @@
+import 'package:centa_clone/applcation/bloc/home_screen/home_screen_bloc.dart';
+import 'package:centa_clone/domain/core/dependency_injection/injectable.dart';
 import 'package:centa_clone/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
 import 'firebase_options.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,7 +13,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  await configureInjection();
   runApp(const CentaClone());
 }
 
@@ -19,13 +22,19 @@ class CentaClone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Clone',
-      theme: ThemeData(
-          primaryColor: Colors.white, scaffoldBackgroundColor: Colors.white),
-      home: const SplashScreen(),
-      
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<HomeScreenBloc>(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Clone',
+        theme: ThemeData(
+            primaryColor: Colors.white, scaffoldBackgroundColor: Colors.white),
+        home: const SplashScreen(),
+      ),
     );
   }
 }
