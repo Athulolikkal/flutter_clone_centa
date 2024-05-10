@@ -35,6 +35,13 @@ Widget _itemCard(Map course, BuildContext context) {
           titleText: course['title'],
           rating: course['rating'],
         ),
+        // builder: (cntx) => CourseViewDetails(
+        //   imageUrl: course['image'],
+        //   tag: course['tag'],
+        //   price: course['price'],
+        //   titleText: course['title'],
+        //   rating: course['rating'],
+        // ),
       ),
     ),
     child: Container(

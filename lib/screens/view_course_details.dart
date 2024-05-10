@@ -55,7 +55,7 @@ class CourseViewDetails extends StatelessWidget {
             //clip path is using for getting the curve shape and also we need to try the code for getting curve shape
             ClipPath(
               clipper: CustomCurvedEdges(),
-              child: Image.asset(imageUrl),
+              child: Image.network(imageUrl),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),

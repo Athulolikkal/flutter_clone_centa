@@ -9,6 +9,7 @@ import 'package:centa_clone/widgets/home_screen/trending_searches.dart';
 import 'package:centa_clone/widgets/learning_screen/items_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:developer';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -35,8 +36,16 @@ class HomeScreen extends StatelessWidget {
               : ListView(
                   children: [
                     //First container
-                    const AutoScrollContainerWidget(),
-
+                    // if (state.homeScreenData != null)
+                    //   state.homeScreenData!.isNotEmpty
+                    //       ? AutoScrollContainerWidget(
+                    //           scrollDetails: state.homeScreenData![0])
+                    //       : SizedBox
+                    //           .shrink(), // Use SizedBox.shrink() to represent an empty widget
+                    if (state.homeScreenData.isNotEmpty)
+                      AutoScrollContainerWidget(
+                        autoScrollDetails: state.homeScreenData[0],
+                      ),
                     SizedBox(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -66,8 +75,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    const TrendingSearchesWidget(),
+                    if (state.homeScreenData.isNotEmpty)
+                       TrendingSearchesWidget(trendingDetails:state.homeScreenData[1]),
 
                     //Recommended for you
                     SizedBox(
@@ -96,6 +105,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     ItemsShowCard(courseDetails: recommendation_data),
                     const StartContainerWidget(),
                     const ContainerLastWidget(),

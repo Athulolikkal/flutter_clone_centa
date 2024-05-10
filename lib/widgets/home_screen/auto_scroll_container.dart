@@ -1,9 +1,11 @@
 import 'package:centa_clone/data/auto_scroll_container_data.dart';
+import 'package:centa_clone/domain/models/home_screen.dart';
 import 'package:centa_clone/screens/view_course_details.dart';
 import 'package:flutter/material.dart';
 
 class AutoScrollContainerWidget extends StatelessWidget {
-  const AutoScrollContainerWidget({super.key});
+  final autoScrollDetails;
+  const AutoScrollContainerWidget({super.key, required this.autoScrollDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -13,22 +15,22 @@ class AutoScrollContainerWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: autoScrollDataCourse.length,
         itemBuilder: (context, index) {
-          return _buildContainer(autoScrollDataCourse[index], context);
+          return _buildContainer(autoScrollDetails[index], context);
         },
       ),
     );
   }
 
-  Widget _buildContainer(Map assetImagePath, BuildContext context) {
+  Widget _buildContainer(HomeScreenData assetImagePath, BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (cntx) => CourseViewDetails(
-                  imageUrl: assetImagePath['image'],
-                  price: assetImagePath['price'],
-                  titleText: assetImagePath['title'],
-                  tag: assetImagePath['tag'],
-                  rating: assetImagePath['rating'],
+                  imageUrl: assetImagePath.imageUrl.toString() ?? '',
+                  price: assetImagePath.price?.toInt() ?? 0,
+                  titleText: assetImagePath.title.toString() ?? '',
+                  tag: assetImagePath.tag.toString() ?? '',
+                  rating: 5,
                 )));
       },
       child: Container(
@@ -44,7 +46,7 @@ class AutoScrollContainerWidget extends StatelessWidget {
                 width: 1,
               ),
               image: DecorationImage(
-                image: AssetImage(assetImagePath['image']),
+                image: NetworkImage(assetImagePath.imageUrl.toString()),
                 fit: BoxFit.fill,
               ),
               borderRadius: BorderRadius.circular(10),

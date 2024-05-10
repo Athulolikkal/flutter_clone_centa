@@ -1,9 +1,11 @@
-import 'package:centa_clone/data/auto_scroll_container_data.dart';
+// import 'package:centa_clone/data/auto_scroll_container_data.dart';
+import 'package:centa_clone/domain/models/home_screen.dart';
 import 'package:centa_clone/screens/view_course_details.dart';
 import 'package:flutter/material.dart';
 
 class TrendingSearchesWidget extends StatelessWidget {
-  const TrendingSearchesWidget({super.key});
+  final trendingDetails;
+  const TrendingSearchesWidget({super.key, required this.trendingDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,7 @@ class TrendingSearchesWidget extends StatelessWidget {
       height: 250,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: (trendingSearchesList.length / 3).ceil(),
+          itemCount: (trendingDetails.length / 3).ceil(),
           itemBuilder: (context, index) {
             return _groupedSearchWidgets(index, context);
           }),
@@ -21,11 +23,11 @@ class TrendingSearchesWidget extends StatelessWidget {
   Widget _groupedSearchWidgets(int passedindex, BuildContext context) {
     int groupStartIndex = passedindex * 3;
     int groupEndIndex = groupStartIndex + 3;
-    if (groupEndIndex > trendingSearchesList.length) {
-      groupEndIndex = trendingSearchesList.length;
+    if (groupEndIndex > trendingDetails.length) {
+      groupEndIndex = trendingDetails.length;
     }
-    List<Map<String, dynamic>> groupList =
-        trendingSearchesList.sublist(groupStartIndex, groupEndIndex);
+    List<HomeScreenData> groupList =
+        trendingDetails.sublist(groupStartIndex, groupEndIndex);
 
     return SizedBox(
       height: 100,
@@ -34,7 +36,7 @@ class TrendingSearchesWidget extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemCount: groupList.length,
           itemBuilder: (context, index) {
-            int totalSearches = groupList[index]['totalSearches'];
+            int totalSearches = groupList[index].searches?.toInt() ?? 0;
             int firstDigit = int.parse(totalSearches.toString()[0]);
 
             return ListTile(
@@ -42,13 +44,13 @@ class TrendingSearchesWidget extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (cntx) => CourseViewDetails(
-                      imageUrl: groupList[index]['image'],
-                      price: groupList[index]['price'],
-                      titleText: groupList[index]['title'],
-                      tag: groupList[index]['tag'],
-                      rating: groupList[index]['rating'],
+                      imageUrl: groupList[index].imageUrl.toString()??'',
+                      price: groupList[index].price?.toInt()??0,
+                      titleText: groupList[index].title.toString(),
+                      tag: groupList[index].tag??'',
+                      rating: 4,
                     ),
-                  ),
+                  ), 
                 );
               },
               leading: Container(
@@ -58,12 +60,12 @@ class TrendingSearchesWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                   image: DecorationImage(
-                      image: AssetImage(groupList[index]['image']),
+                      image: NetworkImage(groupList[index].imageUrl.toString()),
                       fit: BoxFit.fill),
                 ),
               ),
               title: Text(
-                groupList[index]['title'],
+                groupList[index].title.toString() ?? '',
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: const TextStyle(
@@ -74,10 +76,10 @@ class TrendingSearchesWidget extends StatelessWidget {
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("#${groupList[index]['tag']}"),
-                  Text(groupList[index]['totalSearches'] <= 999
+                  Text("#${groupList[index].tag}"),
+                  Text(totalSearches <= 999
                       ? "$totalSearches Searches"
-                      : "${firstDigit}k Searches"), 
+                      : "${firstDigit}k Searches"),
                 ],
               ),
             );

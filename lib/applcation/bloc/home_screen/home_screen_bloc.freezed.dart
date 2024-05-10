@@ -179,9 +179,9 @@ abstract class _GetAutoScrollDataInformation implements HomeScreenEvent {
 /// @nodoc
 mixin _$HomeScreenState {
   bool get isLoading => throw _privateConstructorUsedError;
-  List<HomeScreenData>? get homeScreenData =>
+  List<List<HomeScreenData>> get homeScreenData =>
       throw _privateConstructorUsedError;
-  Option<Either<MainFailure, List<HomeScreenData>>>
+  Option<Either<MainFailure, List<List<HomeScreenData>>>>
       get homeScreeenFailureOrSuccessOption =>
           throw _privateConstructorUsedError;
 
@@ -198,8 +198,8 @@ abstract class $HomeScreenStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isLoading,
-      List<HomeScreenData>? homeScreenData,
-      Option<Either<MainFailure, List<HomeScreenData>>>
+      List<List<HomeScreenData>> homeScreenData,
+      Option<Either<MainFailure, List<List<HomeScreenData>>>>
           homeScreeenFailureOrSuccessOption});
 }
 
@@ -217,7 +217,7 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
   @override
   $Res call({
     Object? isLoading = null,
-    Object? homeScreenData = freezed,
+    Object? homeScreenData = null,
     Object? homeScreeenFailureOrSuccessOption = null,
   }) {
     return _then(_value.copyWith(
@@ -225,15 +225,15 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      homeScreenData: freezed == homeScreenData
+      homeScreenData: null == homeScreenData
           ? _value.homeScreenData
           : homeScreenData // ignore: cast_nullable_to_non_nullable
-              as List<HomeScreenData>?,
+              as List<List<HomeScreenData>>,
       homeScreeenFailureOrSuccessOption: null ==
               homeScreeenFailureOrSuccessOption
           ? _value.homeScreeenFailureOrSuccessOption
           : homeScreeenFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<MainFailure, List<HomeScreenData>>>,
+              as Option<Either<MainFailure, List<List<HomeScreenData>>>>,
     ) as $Val);
   }
 }
@@ -248,8 +248,8 @@ abstract class _$$HomeScreenStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isLoading,
-      List<HomeScreenData>? homeScreenData,
-      Option<Either<MainFailure, List<HomeScreenData>>>
+      List<List<HomeScreenData>> homeScreenData,
+      Option<Either<MainFailure, List<List<HomeScreenData>>>>
           homeScreeenFailureOrSuccessOption});
 }
 
@@ -265,7 +265,7 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
-    Object? homeScreenData = freezed,
+    Object? homeScreenData = null,
     Object? homeScreeenFailureOrSuccessOption = null,
   }) {
     return _then(_$HomeScreenStateImpl(
@@ -273,15 +273,15 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      homeScreenData: freezed == homeScreenData
+      homeScreenData: null == homeScreenData
           ? _value._homeScreenData
           : homeScreenData // ignore: cast_nullable_to_non_nullable
-              as List<HomeScreenData>?,
+              as List<List<HomeScreenData>>,
       homeScreeenFailureOrSuccessOption: null ==
               homeScreeenFailureOrSuccessOption
           ? _value.homeScreeenFailureOrSuccessOption
           : homeScreeenFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<MainFailure, List<HomeScreenData>>>,
+              as Option<Either<MainFailure, List<List<HomeScreenData>>>>,
     ));
   }
 }
@@ -291,24 +291,22 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
 class _$HomeScreenStateImpl implements _HomeScreenState {
   const _$HomeScreenStateImpl(
       {required this.isLoading,
-      final List<HomeScreenData>? homeScreenData,
+      required final List<List<HomeScreenData>> homeScreenData,
       required this.homeScreeenFailureOrSuccessOption})
       : _homeScreenData = homeScreenData;
 
   @override
   final bool isLoading;
-  final List<HomeScreenData>? _homeScreenData;
+  final List<List<HomeScreenData>> _homeScreenData;
   @override
-  List<HomeScreenData>? get homeScreenData {
-    final value = _homeScreenData;
-    if (value == null) return null;
+  List<List<HomeScreenData>> get homeScreenData {
     if (_homeScreenData is EqualUnmodifiableListView) return _homeScreenData;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_homeScreenData);
   }
 
   @override
-  final Option<Either<MainFailure, List<HomeScreenData>>>
+  final Option<Either<MainFailure, List<List<HomeScreenData>>>>
       homeScreeenFailureOrSuccessOption;
 
   @override
@@ -349,16 +347,16 @@ class _$HomeScreenStateImpl implements _HomeScreenState {
 abstract class _HomeScreenState implements HomeScreenState {
   const factory _HomeScreenState(
       {required final bool isLoading,
-      final List<HomeScreenData>? homeScreenData,
-      required final Option<Either<MainFailure, List<HomeScreenData>>>
+      required final List<List<HomeScreenData>> homeScreenData,
+      required final Option<Either<MainFailure, List<List<HomeScreenData>>>>
           homeScreeenFailureOrSuccessOption}) = _$HomeScreenStateImpl;
 
   @override
   bool get isLoading;
   @override
-  List<HomeScreenData>? get homeScreenData;
+  List<List<HomeScreenData>> get homeScreenData;
   @override
-  Option<Either<MainFailure, List<HomeScreenData>>>
+  Option<Either<MainFailure, List<List<HomeScreenData>>>>
       get homeScreeenFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)

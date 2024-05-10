@@ -13,17 +13,18 @@ part 'home_screen_bloc.freezed.dart';
 @injectable
 class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
   final IHomeScreenRepo _homeScreenRepo;
-  HomeScreenBloc(this._homeScreenRepo) : super(HomeScreenState.inital()) {
+  HomeScreenBloc(this._homeScreenRepo) : super(HomeScreenState.initial()) {
     on<_GetAutoScrollDataInformation>((event, emit) async {
       //changing the status to loading
       emit(
         state.copyWith(
           isLoading: true,
+          
           homeScreeenFailureOrSuccessOption: none(),
         ),
       );
 
-      final Either<MainFailure, List<HomeScreenData>> homeScreenFetchedData =
+      final Either<MainFailure, List<List<HomeScreenData>>> homeScreenFetchedData =
           await _homeScreenRepo.getAutoScrollDataInformation();
 
       //using fold to check the response if there is either option!
@@ -31,6 +32,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
           //if faliure came then
           (failure) => state.copyWith(
                 isLoading: false,
+               
                 //It is faliure(left option) so something in the left option,
                 //So we assigning what we got from that option to that variable,
                 homeScreeenFailureOrSuccessOption: Some(left(failure)),
@@ -38,6 +40,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
           //if success came then
           (success) => state.copyWith(
                 isLoading: false,
+                
                 //success response is list of homescreen data
                 //So we assigning the success value to home screen data variable
                 homeScreenData: success,

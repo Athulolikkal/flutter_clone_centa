@@ -4,5 +4,6 @@ import 'package:centa_clone/domain/models/home_screen.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class IHomeScreenRepo{
-Future<Either<MainFailure,List<HomeScreenData>>> getAutoScrollDataInformation();
+// Future<Either<MainFailure,List<HomeScreenData>>> getAutoScrollDataInformation();
+Future<Either<MainFailure,List<List<HomeScreenData>>>> getAutoScrollDataInformation();
 }

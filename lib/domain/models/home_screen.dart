@@ -7,6 +7,14 @@ part 'home_screen.g.dart';
 class HomeScreenData with _$HomeScreenData{
   const factory HomeScreenData({
  @JsonKey(name:'profile') required String? imageUrl,
+ @JsonKey(name:'id') required String? courseId,
+ @JsonKey(name:'sl_no') required int? serialNumber,
+ required num? searches,
+ required num? price,
+ required String? tag,
+ required String? creator,
+ required String? description,
+ required String? type,
  required String? title,
   })=_HomeScreenData;
 
