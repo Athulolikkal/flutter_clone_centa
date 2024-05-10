@@ -5,7 +5,7 @@ class GraphQlQueryCourseDetailsServices {
   static GraphQLConfig graphQLConfig = GraphQLConfig();
   GraphQLClient client = graphQLConfig.clientToQuery();
 
-  Future<List<Map<String, dynamic>>> getAllCourses() async {
+  Future<List<dynamic>> getAllCourses() async {
     try {
       QueryResult result = await client.query(
           QueryOptions(fetchPolicy: FetchPolicy.noCache, document: gql('''
@@ -31,7 +31,7 @@ query MyQuery {
         ];
       } else {
        
-        List<Map<String, dynamic>> allCourses = result.data!['course_details'];
+        List allCourses = result.data!['course_details'];
         return allCourses;
       }
     } catch (err) {

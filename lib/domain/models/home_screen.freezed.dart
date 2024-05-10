@@ -20,7 +20,9 @@ HomeScreenData _$HomeScreenDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$HomeScreenData {
+  @JsonKey(name: 'profile')
   String? get imageUrl => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +36,7 @@ abstract class $HomeScreenDataCopyWith<$Res> {
           HomeScreenData value, $Res Function(HomeScreenData) then) =
       _$HomeScreenDataCopyWithImpl<$Res, HomeScreenData>;
   @useResult
-  $Res call({String? imageUrl});
+  $Res call({@JsonKey(name: 'profile') String? imageUrl, String? title});
 }
 
 /// @nodoc
@@ -51,11 +53,16 @@ class _$HomeScreenDataCopyWithImpl<$Res, $Val extends HomeScreenData>
   @override
   $Res call({
     Object? imageUrl = freezed,
+    Object? title = freezed,
   }) {
     return _then(_value.copyWith(
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -69,7 +76,7 @@ abstract class _$$HomeScreenDataImplCopyWith<$Res>
       __$$HomeScreenDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? imageUrl});
+  $Res call({@JsonKey(name: 'profile') String? imageUrl, String? title});
 }
 
 /// @nodoc
@@ -84,11 +91,16 @@ class __$$HomeScreenDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? imageUrl = freezed,
+    Object? title = freezed,
   }) {
     return _then(_$HomeScreenDataImpl(
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -97,17 +109,21 @@ class __$$HomeScreenDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HomeScreenDataImpl implements _HomeScreenData {
-  const _$HomeScreenDataImpl({required this.imageUrl});
+  const _$HomeScreenDataImpl(
+      {@JsonKey(name: 'profile') required this.imageUrl, required this.title});
 
   factory _$HomeScreenDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$HomeScreenDataImplFromJson(json);
 
   @override
+  @JsonKey(name: 'profile')
   final String? imageUrl;
+  @override
+  final String? title;
 
   @override
   String toString() {
-    return 'HomeScreenData(imageUrl: $imageUrl)';
+    return 'HomeScreenData(imageUrl: $imageUrl, title: $title)';
   }
 
   @override
@@ -116,12 +132,13 @@ class _$HomeScreenDataImpl implements _HomeScreenData {
         (other.runtimeType == runtimeType &&
             other is _$HomeScreenDataImpl &&
             (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+                other.imageUrl == imageUrl) &&
+            (identical(other.title, title) || other.title == title));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, imageUrl);
+  int get hashCode => Object.hash(runtimeType, imageUrl, title);
 
   @JsonKey(ignore: true)
   @override
@@ -139,14 +156,18 @@ class _$HomeScreenDataImpl implements _HomeScreenData {
 }
 
 abstract class _HomeScreenData implements HomeScreenData {
-  const factory _HomeScreenData({required final String? imageUrl}) =
-      _$HomeScreenDataImpl;
+  const factory _HomeScreenData(
+      {@JsonKey(name: 'profile') required final String? imageUrl,
+      required final String? title}) = _$HomeScreenDataImpl;
 
   factory _HomeScreenData.fromJson(Map<String, dynamic> json) =
       _$HomeScreenDataImpl.fromJson;
 
   @override
+  @JsonKey(name: 'profile')
   String? get imageUrl;
+  @override
+  String? get title;
   @override
   @JsonKey(ignore: true)
   _$$HomeScreenDataImplCopyWith<_$HomeScreenDataImpl> get copyWith =>

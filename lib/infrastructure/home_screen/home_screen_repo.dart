@@ -9,25 +9,31 @@ import 'package:injectable/injectable.dart';
 @LazySingleton(as: IHomeScreenRepo)
 class HomeScreenRepository implements IHomeScreenRepo {
   @override
-  Future<Either<MainFailure, List<HomeScreenData>>>getAutoScrollDataInformation()async {
+  Future<Either<MainFailure, List<HomeScreenData>>>
+      getAutoScrollDataInformation() async {
     try {
-       final List<Map<String, dynamic>> response = await GraphQlQueryCourseDetailsServices().getAllCourses();
-       print("response $response");
-       if(response[0]['error']==true){
-        return const Left(MainFailure.serverFailure());
-       }else{
-        final List<HomeScreenData> homeDataList=[];
-        for(final raw in response){
-          homeDataList.add(HomeScreenData.fromJson(raw as Map<String,dynamic>));
-        }
-        print("home data list${homeDataList}");
-        return  Right(homeDataList);
-        
-       }
+      final List<dynamic> response =
+          await GraphQlQueryCourseDetailsServices().getAllCourses();
 
+      if (response[0]['error'] == true) {
+        return const Left(MainFailure.serverFailure());
+      } else {
+        final homeDataList = (response as List).map((e) {
+          return HomeScreenData.fromJson(e);
+        }).toList();
+
+        // final List<HomeScreenData> homeDataList = [];
+        // for (final raw in response) {
+        //   print("$raw, each ");
+        //   homeDataList
+        //       .add(HomeScreenData.fromJson(raw as Map<String, dynamic>));
+        // }
+        print(homeDataList);
+        return Right(homeDataList);
+      }
     } catch (err) {
       print(err);
-       return const Left(MainFailure.clientFailure());
+      return const Left(MainFailure.clientFailure());
     }
   }
 }

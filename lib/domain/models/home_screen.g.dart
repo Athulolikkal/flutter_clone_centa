@@ -8,11 +8,13 @@ part of 'home_screen.dart';
 
 _$HomeScreenDataImpl _$$HomeScreenDataImplFromJson(Map<String, dynamic> json) =>
     _$HomeScreenDataImpl(
-      imageUrl: json['imageUrl'] as String?,
+      imageUrl: json['profile'] as String?,
+      title: json['title'] as String?,
     );
 
 Map<String, dynamic> _$$HomeScreenDataImplToJson(
         _$HomeScreenDataImpl instance) =>
     <String, dynamic>{
-      'imageUrl': instance.imageUrl,
+      'profile': instance.imageUrl,
+      'title': instance.title,
     };
