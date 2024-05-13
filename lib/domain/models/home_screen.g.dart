@@ -18,6 +18,8 @@ _$HomeScreenDataImpl _$$HomeScreenDataImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       type: json['type'] as String?,
       title: json['title'] as String?,
+      date: json['date'] as String?,
+      rating: json['rating'] as num?,
     );
 
 Map<String, dynamic> _$$HomeScreenDataImplToJson(
@@ -33,4 +35,6 @@ Map<String, dynamic> _$$HomeScreenDataImplToJson(
       'description': instance.description,
       'type': instance.type,
       'title': instance.title,
+      'date': instance.date,
+      'rating': instance.rating,
     };

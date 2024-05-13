@@ -21,6 +21,8 @@ query MyQuery {
     tag
     title
     type
+    rating
+    date
   }
 }
 ''')));

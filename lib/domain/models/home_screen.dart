@@ -16,6 +16,8 @@ class HomeScreenData with _$HomeScreenData{
  required String? description,
  required String? type,
  required String? title,
+ required String ? date,
+ required num? rating,
   })=_HomeScreenData;
 
   factory HomeScreenData.fromJson(Map<String,dynamic>json)=>_$HomeScreenDataFromJson(json);

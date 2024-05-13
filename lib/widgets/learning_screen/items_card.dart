@@ -1,3 +1,4 @@
+import 'package:centa_clone/domain/models/home_screen.dart';
 import 'package:centa_clone/screens/view_course_details.dart';
 import 'package:flutter/material.dart';
 
@@ -24,16 +25,16 @@ class ItemsShowCard extends StatelessWidget {
   }
 }
 
-Widget _itemCard(Map course, BuildContext context) {
+Widget _itemCard(HomeScreenData course, BuildContext context) {
   return GestureDetector(
     onTap: () => Navigator.of(context).push(
       MaterialPageRoute(
         builder: (cntx) => CourseViewDetails(
-          imageUrl: course['image'],
-          tag: course['tag'],
-          price: course['price'],
-          titleText: course['title'],
-          rating: course['rating'],
+          imageUrl: course.imageUrl.toString() ?? '',
+          tag: course.tag.toString() ?? '',
+          price: course.price?.toInt() ?? 0,
+          titleText: course.title.toString() ?? '',
+          rating: course.rating?.toDouble() ?? 0,
         ),
         // builder: (cntx) => CourseViewDetails(
         //   imageUrl: course['image'],
@@ -66,9 +67,8 @@ Widget _itemCard(Map course, BuildContext context) {
                 bottomRight: Radius.circular(10),
               ),
               child: SizedBox(
-                
-                child: Image.asset(
-                  course['image'],
+                child: Image.network(
+                  course.imageUrl.toString() ?? '',
                   height: 150,
                   width: 320,
                   fit: BoxFit.fill,
@@ -99,12 +99,15 @@ Widget _itemCard(Map course, BuildContext context) {
           ]),
           ListTile(
             title: Text(
-              course['title'],
+              course.title.toString() ?? '',
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 14),
+              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
             ),
-            subtitle: Text(course['creator'],style:const TextStyle(fontSize: 12),),
+            subtitle: Text(
+              course.creator.toString() ?? '',
+              style: const TextStyle(fontSize: 12),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -113,19 +116,23 @@ Widget _itemCard(Map course, BuildContext context) {
               children: [
                 Row(
                   children: [
-                    if (course['rating'] > 0)
+                    //replace 4 with actual rating
+                    if ((course.rating ?? 0) > 0)
                       const Icon(
                         Icons.grade_sharp,
                         color: Colors.amber,
                       ),
-                    if (course['date'] != null && course['rating'] <= 1)
-                      Text(course['date'],style:const TextStyle(fontSize: 12)),
-                    if (course['rating'] > 0)
-                      Text("${course['rating']} | ${course['number']}"),
+                    if (course.date != null && (course.rating ?? 0) <= 1)
+                      Text(course.date.toString() ,
+                          style: const TextStyle(fontSize: 12)),
+                    if (course.rating!=null && course.rating! > 0)
+                      Text("${course.rating} | ${course.serialNumber}"),
                   ],
                 ),
                 Text(
-                  course['price'] == 0 ? 'FREE' : "\u20B9 ${course['price']}.0",
+                  course.price?.toInt() == 0
+                      ? 'FREE'
+                      : "\u20B9 ${course.price?.toInt()}.0",
                   style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,

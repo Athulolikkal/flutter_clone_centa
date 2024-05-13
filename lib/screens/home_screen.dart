@@ -76,7 +76,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     if (state.homeScreenData.isNotEmpty)
-                       TrendingSearchesWidget(trendingDetails:state.homeScreenData[1]),
+                      TrendingSearchesWidget(
+                          trendingDetails: state.homeScreenData[1]),
 
                     //Recommended for you
                     SizedBox(
@@ -105,8 +106,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    ItemsShowCard(courseDetails: recommendation_data),
+                    if (state.homeScreenData.isNotEmpty)
+                      ItemsShowCard(courseDetails: state.homeScreenData[2]),
+                    // ItemsShowCard(courseDetails: recommendation_data),
                     const StartContainerWidget(),
                     const ContainerLastWidget(),
                   ],

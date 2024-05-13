@@ -3,6 +3,7 @@ import 'package:centa_clone/domain/core/failures/main_failures.dart';
 import 'package:centa_clone/domain/i_home_screen_repo.dart';
 import 'package:centa_clone/domain/models/home_screen.dart';
 import 'package:centa_clone/gql/query/course.dart';
+import 'package:centa_clone/services/date_parsing.dart';
 import 'package:centa_clone/services/find_randum_index.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -39,22 +40,31 @@ class HomeScreenRepository implements IHomeScreenRepo {
           allWebinars[secondIndexWebinar],
           allCourses[indexFromAllCourses],
         ];
+        autoScrollDetails.forEach((details) async {
+          details['date'] = await parseDate(details['date']);
+        });
+
         //trending course details
         final trendingDetails = allCourses.sublist(0, 6);
+        
 
         //recommandation courses details
         final List remainingCourses = allCourses.where((course) {
           return !autoScrollDetails.contains(course) &&
               !trendingDetails.contains(course);
         }).toList();
-
-        final List<HomeScreenData> autoScrollData = (autoScrollDetails as List).map((e) {
+       
+        final updatedReminingCourses = await updateTheCourseData(remainingCourses);
+        final List<HomeScreenData> autoScrollData =
+            (autoScrollDetails as List).map((e) {
           return HomeScreenData.fromJson(e);
         }).toList();
-        final List<HomeScreenData> trendingData = (trendingDetails as List).map((e) {
+        final List<HomeScreenData> trendingData =
+            (trendingDetails as List).map((e) {
           return HomeScreenData.fromJson(e);
         }).toList();
-        final List<HomeScreenData> recommendedData = (remainingCourses as List).map((e) {
+        final List<HomeScreenData> recommendedData =
+            (updatedReminingCourses as List).map((e) {
           return HomeScreenData.fromJson(e);
         }).toList();
 

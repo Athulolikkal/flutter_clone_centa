@@ -33,6 +33,8 @@ mixin _$HomeScreenData {
   String? get description => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
+  num? get rating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +58,9 @@ abstract class $HomeScreenDataCopyWith<$Res> {
       String? creator,
       String? description,
       String? type,
-      String? title});
+      String? title,
+      String? date,
+      num? rating});
 }
 
 /// @nodoc
@@ -82,6 +86,8 @@ class _$HomeScreenDataCopyWithImpl<$Res, $Val extends HomeScreenData>
     Object? description = freezed,
     Object? type = freezed,
     Object? title = freezed,
+    Object? date = freezed,
+    Object? rating = freezed,
   }) {
     return _then(_value.copyWith(
       imageUrl: freezed == imageUrl
@@ -124,6 +130,14 @@ class _$HomeScreenDataCopyWithImpl<$Res, $Val extends HomeScreenData>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as num?,
     ) as $Val);
   }
 }
@@ -146,7 +160,9 @@ abstract class _$$HomeScreenDataImplCopyWith<$Res>
       String? creator,
       String? description,
       String? type,
-      String? title});
+      String? title,
+      String? date,
+      num? rating});
 }
 
 /// @nodoc
@@ -170,6 +186,8 @@ class __$$HomeScreenDataImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? type = freezed,
     Object? title = freezed,
+    Object? date = freezed,
+    Object? rating = freezed,
   }) {
     return _then(_$HomeScreenDataImpl(
       imageUrl: freezed == imageUrl
@@ -212,6 +230,14 @@ class __$$HomeScreenDataImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as num?,
     ));
   }
 }
@@ -229,7 +255,9 @@ class _$HomeScreenDataImpl implements _HomeScreenData {
       required this.creator,
       required this.description,
       required this.type,
-      required this.title});
+      required this.title,
+      required this.date,
+      required this.rating});
 
   factory _$HomeScreenDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$HomeScreenDataImplFromJson(json);
@@ -257,10 +285,14 @@ class _$HomeScreenDataImpl implements _HomeScreenData {
   final String? type;
   @override
   final String? title;
+  @override
+  final String? date;
+  @override
+  final num? rating;
 
   @override
   String toString() {
-    return 'HomeScreenData(imageUrl: $imageUrl, courseId: $courseId, serialNumber: $serialNumber, searches: $searches, price: $price, tag: $tag, creator: $creator, description: $description, type: $type, title: $title)';
+    return 'HomeScreenData(imageUrl: $imageUrl, courseId: $courseId, serialNumber: $serialNumber, searches: $searches, price: $price, tag: $tag, creator: $creator, description: $description, type: $type, title: $title, date: $date, rating: $rating)';
   }
 
   @override
@@ -282,13 +314,15 @@ class _$HomeScreenDataImpl implements _HomeScreenData {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.rating, rating) || other.rating == rating));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, imageUrl, courseId, serialNumber,
-      searches, price, tag, creator, description, type, title);
+      searches, price, tag, creator, description, type, title, date, rating);
 
   @JsonKey(ignore: true)
   @override
@@ -316,7 +350,9 @@ abstract class _HomeScreenData implements HomeScreenData {
       required final String? creator,
       required final String? description,
       required final String? type,
-      required final String? title}) = _$HomeScreenDataImpl;
+      required final String? title,
+      required final String? date,
+      required final num? rating}) = _$HomeScreenDataImpl;
 
   factory _HomeScreenData.fromJson(Map<String, dynamic> json) =
       _$HomeScreenDataImpl.fromJson;
@@ -344,6 +380,10 @@ abstract class _HomeScreenData implements HomeScreenData {
   String? get type;
   @override
   String? get title;
+  @override
+  String? get date;
+  @override
+  num? get rating;
   @override
   @JsonKey(ignore: true)
   _$$HomeScreenDataImplCopyWith<_$HomeScreenDataImpl> get copyWith =>

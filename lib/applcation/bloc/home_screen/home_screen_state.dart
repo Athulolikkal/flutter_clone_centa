@@ -4,7 +4,7 @@ part of 'home_screen_bloc.dart';
 class HomeScreenState with _$HomeScreenState {
   const factory HomeScreenState({
     required bool isLoading,
-  required  List<List<HomeScreenData>> homeScreenData,
+    required  List<List<HomeScreenData>> homeScreenData,
     required Option<Either<MainFailure, List<List<HomeScreenData>>>>
         homeScreeenFailureOrSuccessOption,
   }) = _HomeScreenState;

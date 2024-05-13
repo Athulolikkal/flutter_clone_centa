@@ -44,13 +44,13 @@ class TrendingSearchesWidget extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (cntx) => CourseViewDetails(
-                      imageUrl: groupList[index].imageUrl.toString()??'',
-                      price: groupList[index].price?.toInt()??0,
+                      imageUrl: groupList[index].imageUrl.toString() ?? '',
+                      price: groupList[index].price?.toInt() ?? 0,
                       titleText: groupList[index].title.toString(),
-                      tag: groupList[index].tag??'',
-                      rating: 4,
+                      tag: groupList[index].tag ?? '',
+                      rating: groupList[index].rating!.toDouble() ?? 0,
                     ),
-                  ), 
+                  ),
                 );
               },
               leading: Container(

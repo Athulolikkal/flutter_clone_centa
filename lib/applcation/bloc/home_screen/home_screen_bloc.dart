@@ -19,7 +19,6 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
       emit(
         state.copyWith(
           isLoading: true,
-          
           homeScreeenFailureOrSuccessOption: none(),
         ),
       );

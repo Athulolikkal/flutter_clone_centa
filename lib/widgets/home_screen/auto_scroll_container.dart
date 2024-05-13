@@ -30,7 +30,7 @@ class AutoScrollContainerWidget extends StatelessWidget {
                   price: assetImagePath.price?.toInt() ?? 0,
                   titleText: assetImagePath.title.toString() ?? '',
                   tag: assetImagePath.tag.toString() ?? '',
-                  rating: 5,
+                  rating: assetImagePath.rating!.toDouble()??0,
                 )));
       },
       child: Container(
