@@ -1,25 +1,29 @@
+import 'package:centa_clone/applcation/bloc/learnings/bloc/learning_bloc.dart';
 import 'package:centa_clone/data/learning_page.dart';
 import 'package:centa_clone/widgets/learning_screen/items_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LearningScreen extends StatelessWidget {
   const LearningScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<LearningBloc>(context)
+          .add(const LearningEvent.getAllLearnings());
+    });
+
+    // BlocProvider.of<LearningBloc>(context)
+    //     .add(const LearningEvent.getAllLearnings());
     List<String> learningHeaders = [
       'Self-Paced Courses',
       'CENTALKS - Free Webinars',
       'Expert Masterclasses',
       'Micro Resources',
     ];
-    List<List<Map<String, dynamic>>> courseDetails = [
-      selfPacedCourse,
-      centaTalksWebinars,
-      expertMasterClassesData,
-      microResources
-    ];
+
     return SafeArea(
         child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 18),
@@ -49,10 +53,20 @@ class LearningScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
-                  child: ItemsShowCard(courseDetails: courseDetails[index]),
+                BlocBuilder<LearningBloc, LearningState>(
+                  builder: (context, state) {
+                    return state.learnings.isNotEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 5),
+                            child: ItemsShowCard(
+                                courseDetails: state.learnings[index])
+
+                            // : const Center(child: CircularProgressIndicator()),
+                            // child: ItemsShowCard(courseDetails: courseDetails[index]),
+                            )
+                        : const Center(child: CircularProgressIndicator());
+                  },
                 ),
               ],
             ),

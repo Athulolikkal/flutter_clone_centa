@@ -3,7 +3,7 @@ import 'package:centa_clone/screens/view_course_details.dart';
 import 'package:flutter/material.dart';
 
 class ItemsShowCard extends StatelessWidget {
-  final courseDetails;
+  final List<HomeScreenData> courseDetails;
   const ItemsShowCard({
     super.key,
     required this.courseDetails,

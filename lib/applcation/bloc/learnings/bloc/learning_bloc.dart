@@ -3,14 +3,15 @@ import 'package:centa_clone/domain/i_learning_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc/bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import '../../../../domain/models/home_screen.dart';
 
 part 'learning_event.dart';
 part 'learning_state.dart';
-
 part 'learning_bloc.freezed.dart';
 
+@injectable
 class LearningBloc extends Bloc<LearningEvent, LearningState> {
   final ILearningRepo _learningRepo;
   LearningBloc(this._learningRepo) : super(LearningState.initial()) {

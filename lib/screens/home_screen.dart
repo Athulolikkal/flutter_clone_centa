@@ -17,23 +17,23 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //---calling after building the widget
-    // WidgetsBinding.instance!.addPostFrameCallback((_) {
-    //   BlocProvider.of<HomeScreenBloc>(context)
-    //       .add(const HomeScreenEvent.getAutoScrollDataInformation());
-    // });
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<HomeScreenBloc>(context)
+          .add(const HomeScreenEvent.getAutoScrollDataInformation());
+    });
 
     //---calling every build
-    BlocProvider.of<HomeScreenBloc>(context)
-        .add(const HomeScreenEvent.getAutoScrollDataInformation());
+    // BlocProvider.of<HomeScreenBloc>(context)
+    //     .add(const HomeScreenEvent.getAutoScrollDataInformation());
 
     return SafeArea(
         child: Padding(
       padding: const EdgeInsets.all(10.0),
       child: BlocBuilder<HomeScreenBloc, HomeScreenState>(
         builder: (context, state) {
-          return state.isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : ListView(
+          return state.homeScreenData.isNotEmpty
+              ? 
+              ListView(
                   children: [
                     //First container
                     // if (state.homeScreenData != null)
@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                     const StartContainerWidget(),
                     const ContainerLastWidget(),
                   ],
-                );
+                ):const Center(child: CircularProgressIndicator());
         },
       ),
     ));
