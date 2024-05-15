@@ -42,7 +42,7 @@ class ExploreWidget extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(23.0),
-                              child: Text(
+                              child: SelectableText(
                                 communityPost[index]['content'],
                                 style: const TextStyle(fontSize: 15),
                               ),

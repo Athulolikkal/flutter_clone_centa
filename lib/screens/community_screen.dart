@@ -1,3 +1,4 @@
+import 'package:centa_clone/screens/create_post_screen.dart';
 import 'package:centa_clone/widgets/community_screen/explore_widget.dart';
 import 'package:centa_clone/widgets/community_screen/following.dart';
 import 'package:centa_clone/widgets/community_screen/mygroup_widget.dart';
@@ -83,7 +84,11 @@ class _CommunityScreenState extends State<CommunityScreen>
                   ),
                   SpeedDialChild(
                       child: const Icon(Icons.post_add_outlined),
-                      label: 'Add Post'),
+                      label: 'Add Post',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (cntx) => const AddPostWidget()));
+                      }),
                 ],
               )
             : _showFloatingActionButton

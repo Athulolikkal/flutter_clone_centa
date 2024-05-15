@@ -39,7 +39,7 @@ class CourseViewDetails extends StatelessWidget {
             width: 30,
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: () {}, 
               icon: const Icon(
                 Icons.favorite_outline,
                 color: Color.fromARGB(255, 67, 163, 242),
