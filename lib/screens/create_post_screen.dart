@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:centa_clone/widgets/text_editor/quil_text_editor.dart';
+// import 'package:centa_clone/widgets/text_editor/quil_text_editor.dart';
+import 'package:centa_clone/widgets/text_editor/custom_embed_builder.dart';
 import 'package:centa_clone/widgets/text_editor/upload_modal_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:flutter_quill/quill_delta.dart';
 
 class AddPostWidget extends StatelessWidget {
   const AddPostWidget({super.key});
@@ -75,11 +75,13 @@ class AddPostWidget extends StatelessWidget {
                   configurations: QuillEditorConfigurations(
                     placeholder: 'What\'s happening...',
                     controller: _controller,
+                    embedBuilders: [CustomImageEmbedBuilder()],
                     autoFocus: true,
                     showCursor: true,
                     sharedConfigurations: const QuillSharedConfigurations(
                       locale: Locale('de'),
                     ),
+                    enableInteractiveSelection: true,
                     customStyles: const DefaultStyles(
                       link: TextStyle(
                         color: Color.fromARGB(255, 59, 155, 234),

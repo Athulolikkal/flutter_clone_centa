@@ -41,7 +41,7 @@ void showImageOrVideoPicker(BuildContext context, QuillController controller) {
                   ),
                 ),
                 InkWell(
-                  onTap: () => insertImage(controller),
+                  onTap: () => insertImage(controller,context),
                   child: const Row(
                     children: [
                       Icon(
