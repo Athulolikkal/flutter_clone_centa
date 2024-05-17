@@ -58,7 +58,7 @@ class TrendingSearchesWidget extends StatelessWidget {
                 width: 60,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.black,
+                  color:const Color.fromARGB(255, 183, 183, 183),
                   image: DecorationImage(
                       image: NetworkImage(groupList[index].imageUrl.toString()),
                       fit: BoxFit.fill),

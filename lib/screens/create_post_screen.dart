@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:centa_clone/widgets/text_editor/quil_text_editor.dart';
 import 'package:centa_clone/widgets/text_editor/upload_modal_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_quill/quill_delta.dart';
 
@@ -61,7 +59,6 @@ class AddPostWidget extends StatelessWidget {
                 onPressed: () {
                   final json =
                       jsonEncode(_controller.document.toDelta().toJson());
-
                   print(json);
                 },
                 child: const Text('Share Post')),
@@ -83,11 +80,16 @@ class AddPostWidget extends StatelessWidget {
                     sharedConfigurations: const QuillSharedConfigurations(
                       locale: Locale('de'),
                     ),
+                    customStyles: const DefaultStyles(
+                      link: TextStyle(
+                        color: Color.fromARGB(255, 59, 155, 234),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-
             QuillToolbar.simple(
               configurations: QuillSimpleToolbarConfigurations(
                 controller: _controller,
@@ -142,27 +144,29 @@ class AddPostWidget extends StatelessWidget {
                   ),
                   listBullets: QuillToolbarToggleStyleButtonOptions(
                     iconTheme: QuillIconTheme(
-                        iconButtonUnselectedData:
-                            IconButtonData(color: Colors.black),
-                        iconButtonSelectedData: IconButtonData(
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.white),
-                              foregroundColor:
-                                  MaterialStatePropertyAll(Colors.black)),
-                        )),
+                      iconButtonUnselectedData:
+                          IconButtonData(color: Colors.black),
+                      iconButtonSelectedData: IconButtonData(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.white),
+                            foregroundColor:
+                                MaterialStatePropertyAll(Colors.black)),
+                      ),
+                    ),
                   ),
                   linkStyle: QuillToolbarLinkStyleButtonOptions(
                     iconTheme: QuillIconTheme(
-                        iconButtonUnselectedData:
-                            IconButtonData(color: Colors.black),
-                        iconButtonSelectedData: IconButtonData(
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.white),
-                              foregroundColor:
-                                  MaterialStatePropertyAll(Colors.black)),
-                        )),
+                      iconButtonUnselectedData:
+                          IconButtonData(color: Colors.black),
+                      iconButtonSelectedData: IconButtonData(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.white),
+                            foregroundColor:
+                                MaterialStatePropertyAll(Colors.black)),
+                      ),
+                    ),
                   ),
                 ),
                 decoration: BoxDecoration(
@@ -176,7 +180,8 @@ class AddPostWidget extends StatelessWidget {
                       Icons.image,
                       color: Colors.black,
                     ),
-                    onPressed: () => showImageOrVideoPicker(context),
+                    onPressed: () =>
+                        showImageOrVideoPicker(context, _controller),
                   ),
                   const QuillToolbarCustomButtonOptions(
                       icon: Icon(
@@ -219,28 +224,6 @@ class AddPostWidget extends StatelessWidget {
                 showHeaderStyle: false,
               ),
             ),
-            // share post button
-
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: ElevatedButton(
-            //     onPressed: () {
-            //      Delta enteredText = _controller.document.toDelta();
-            //      print(enteredText);
-            //     },
-            //     style: ButtonStyle(
-            //         backgroundColor: const MaterialStatePropertyAll(
-            //             Color.fromARGB(255, 62, 161, 243)),
-            //         foregroundColor:
-            //             const MaterialStatePropertyAll(Colors.white),
-            //         minimumSize: MaterialStatePropertyAll(
-            //             Size(MediaQuery.of(context).size.width * 0.9, 40))),
-            //     child: const Text(
-            //       'Share Post',
-            //       style: TextStyle(fontSize: 16),
-            //     ),
-            //   ),
-            // )
           ],
         ),
       ),

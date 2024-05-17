@@ -1,19 +1,28 @@
+import 'package:centa_clone/services/pick_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 
-void showImageOrVideoPicker(BuildContext context) {
+void showImageOrVideoPicker(BuildContext context, QuillController controller) {
   showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return SizedBox(
+        return Container(
           height: 200,
           width: MediaQuery.of(context).size.width * 1,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
-                  onTap: () => print('clicked camera'),
+                  onTap: () => pickImageUsingCamera(controller),
                   child: const Row(
                     children: [
                       Icon(
@@ -32,7 +41,7 @@ void showImageOrVideoPicker(BuildContext context) {
                   ),
                 ),
                 InkWell(
-                  onTap: () => print('clicked gallery'),
+                  onTap: () => insertImage(controller),
                   child: const Row(
                     children: [
                       Icon(
@@ -49,7 +58,7 @@ void showImageOrVideoPicker(BuildContext context) {
                   ),
                 ),
                 InkWell(
-                  onTap: () =>   Navigator.of(context).pop(),
+                  onTap: () => Navigator.of(context).pop(),
                   child: const Row(
                     children: [
                       Icon(Icons.close, color: Colors.red, size: 28),
@@ -71,4 +80,7 @@ void showImageOrVideoPicker(BuildContext context) {
           ),
         );
       });
+
+      
 }
+

@@ -40,7 +40,7 @@ class AutoScrollContainerWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           child: Container(
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 194, 194, 194),
+              color: const Color.fromARGB(255, 183, 183, 183),
               border: Border.all(
                 color: const Color.fromARGB(255, 94, 93, 93),
                 width: 1,

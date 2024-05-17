@@ -66,7 +66,8 @@ Widget _itemCard(HomeScreenData course, BuildContext context) {
                 bottomLeft: Radius.circular(10),
                 bottomRight: Radius.circular(10),
               ),
-              child: SizedBox(
+              child: Container(
+                color: const Color.fromARGB(255, 183, 183, 183),
                 child: Image.network(
                   course.imageUrl.toString() ?? '',
                   height: 150,
