@@ -22,7 +22,7 @@ void showImageOrVideoPicker(BuildContext context, QuillController controller) {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
-                  onTap: () => pickImageUsingCamera(controller),
+                  onTap: () =>insertImage(controller,context,'camera'),
                   child: const Row(
                     children: [
                       Icon(
@@ -41,7 +41,7 @@ void showImageOrVideoPicker(BuildContext context, QuillController controller) {
                   ),
                 ),
                 InkWell(
-                  onTap: () => insertImage(controller,context),
+                  onTap: () => insertImage(controller,context,'gallery'),
                   child: const Row(
                     children: [
                       Icon(

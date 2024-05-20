@@ -701,6 +701,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  gql_websocket_link:
+    dependency: transitive
+    description:
+      name: gql_websocket_link
+      sha256: "5b2723e5c70023e5a023996247ecc8299a7b792d0d0b492f9fd612c7101f8ec0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   graphql:
     dependency: transitive
     description:
@@ -917,6 +925,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.8.0"
+  jwt_decoder:
+    dependency: transitive
+    description:
+      name: jwt_decoder
+      sha256: "54774aebf83f2923b99e6416b4ea915d47af3bde56884eb622de85feabbc559f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   leak_tracker:
     dependency: transitive
     description:
@@ -1005,6 +1021,62 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  nhost_auth_dart:
+    dependency: transitive
+    description:
+      name: nhost_auth_dart
+      sha256: bb4a36d9006e4c8b8da38c761ba113419c911fbced97eeef8f6f605344f48b81
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  nhost_dart:
+    dependency: "direct main"
+    description:
+      name: nhost_dart
+      sha256: "1d422219fd333230758cad55c2bc1f896fdecc04c37f4117d7e3f16e9ab9c6e1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
+  nhost_functions_dart:
+    dependency: transitive
+    description:
+      name: nhost_functions_dart
+      sha256: "734e4de1386f4cd83d08898e7cc87af440abc2a173833b788a42bf72e108e3df"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
+  nhost_gql_links:
+    dependency: transitive
+    description:
+      name: nhost_gql_links
+      sha256: "1d3ec71af7e1afd4c2132b0dc625a8ac171d0ff140723253ce14734d179a23cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.5"
+  nhost_graphql_adapter:
+    dependency: transitive
+    description:
+      name: nhost_graphql_adapter
+      sha256: "2d2ce9669b29831c23d0cf01372df75c30f7471f5066d5a0b17c816cc13b8ed9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.4"
+  nhost_sdk:
+    dependency: transitive
+    description:
+      name: nhost_sdk
+      sha256: "5765242727a36272caaabfc5ba18f3e310e70d861b9b40618ed5a0bc2fa6ce5a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.3.0"
+  nhost_storage_dart:
+    dependency: transitive
+    description:
+      name: nhost_storage_dart
+      sha256: e9fe3fb54473caab147f90cc2645ca5803b998e51b9cb40e9b89f9a82d26f169
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
   nm:
     dependency: transitive
     description:
@@ -1030,7 +1102,7 @@ packages:
     source: hosted
     version: "2.1.0"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       sha256: "087ce49c3f0dc39180befefc60fdb4acd8f8620e5682fe2476afd0b3688bb4af"
@@ -1041,10 +1113,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider
-      sha256: b27217933eeeba8ff24845c34003b003b2b22151de3c908d0e679e8fe1aa078b
+      sha256: c9e7d3a4cd1410877472158bee69963a4579f78b68c65a2b7d40d1a7a88bb161
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.3"
   path_provider_android:
     dependency: transitive
     description:

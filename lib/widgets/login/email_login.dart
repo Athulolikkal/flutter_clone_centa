@@ -217,6 +217,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
               String email = userInfo['email'];
               String firstName = userInfo['first_name'];
               String lastName = userInfo['last_name'];
+              String userId= userInfo['id'];
               //checking password is present in db?
 
               if (dbPass != null) {
@@ -229,6 +230,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                     'name':
                         firstName.toUpperCase() + ' ' + lastName.toUpperCase(),
                     'email': email,
+                    'userId':userId,
                   };
 
                   //storing details to acccess every where in the project
