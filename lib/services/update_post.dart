@@ -1,3 +1,4 @@
+import 'package:centa_clone/gql/query/post.dart';
 import 'package:centa_clone/services/upload_images_nhost.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:get_storage/get_storage.dart';
@@ -30,16 +31,20 @@ Future<Map<String, dynamic>> updatePost(QuillController controller) async {
 
       final userDetails = GetStorage().read('user');
       final String? userId = userDetails['userId'];
-      if(userId!=null){
-        
-      }else{
+      if (userId != null) {
+        final isPostAdded = await GraphQlQueryPostServices()
+            .addPost(userId: userId, postDetails: deltaJson);
+        if (isPostAdded['error']) {
+          return {'error': true, 'message': 'post upload failed'};
+        } else {
+          return {'error': false, 'message': 'post uploaded successfully'};
+        }
+      } else {
         return {'error': true, 'message': 'user Id is not present'};
       }
     }
-
-    return {'error': false};
   } catch (err) {
     print(err);
-    return {'error': true};
+    return {'error': true,'message': 'server error'};
   }
 }

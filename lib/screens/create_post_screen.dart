@@ -1,11 +1,9 @@
-import 'dart:convert';
 // import 'package:centa_clone/widgets/text_editor/quil_text_editor.dart';
 import 'package:centa_clone/services/update_post.dart';
 import 'package:centa_clone/widgets/text_editor/custom_embed_builder.dart';
 import 'package:centa_clone/widgets/text_editor/upload_modal_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:flutter_quill/quill_delta.dart';
 
 class AddPostWidget extends StatelessWidget {
   const AddPostWidget({super.key});
@@ -59,8 +57,26 @@ class AddPostWidget extends StatelessWidget {
                     foregroundColor: MaterialStatePropertyAll(Colors.white),
                     minimumSize: MaterialStatePropertyAll(Size(40, 30))),
                 onPressed: () async {
-                  Map<String,dynamic> postDetails =await updatePost(_controller);
-                    // await updatePost(deltaPost);
+                  Map<String, dynamic> postDetails =
+                      await updatePost(_controller);
+                  if (postDetails['error']) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                          'Failed to upload post,Please try again after some time...'),
+                      margin: EdgeInsets.all(10),
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Color.fromARGB(255, 229, 28, 28),
+                    ));
+                    Navigator.of(context).pop();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Post uploaded successfully'),
+                      margin: EdgeInsets.all(10),
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Color.fromARGB(255, 34, 138, 5),
+                    ));
+                    Navigator.of(context).pop();
+                  }
                 },
                 child: const Text('Share Post')),
           ),
