@@ -1,9 +1,11 @@
 import 'package:centa_clone/screens/create_post_screen.dart';
+import 'package:centa_clone/screens/login_root.dart';
 import 'package:centa_clone/widgets/community_screen/explore_widget.dart';
 import 'package:centa_clone/widgets/community_screen/following.dart';
 import 'package:centa_clone/widgets/community_screen/mygroup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:get_storage/get_storage.dart';
 
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({super.key});
@@ -85,9 +87,27 @@ class _CommunityScreenState extends State<CommunityScreen>
                   SpeedDialChild(
                       child: const Icon(Icons.post_add_outlined),
                       label: 'Add Post',
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (cntx) => const AddPostWidget()));
+                      onTap: () async {
+                        final userDetails = await GetStorage().read('user');
+                       
+                        if (userDetails != null) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (cntx) => const AddPostWidget()));
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text('Please login before creating a post'),
+                            margin: EdgeInsets.all(10),
+                            behavior: SnackBarBehavior.floating,
+                            backgroundColor: Color.fromARGB(255, 17, 17, 17),
+                          ));
+                          // Navigator.of(context).pushAndRemoveUntil(
+                          //   MaterialPageRoute(
+                          //       builder: (cntx) => const LoginRoot()),
+                          //   (Route<dynamic> route) => false,
+                          // );
+                        }
                       }),
                 ],
               )

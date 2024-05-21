@@ -6,7 +6,6 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import '../../../../domain/models/home_screen.dart';
-
 part 'learning_event.dart';
 part 'learning_state.dart';
 part 'learning_bloc.freezed.dart';

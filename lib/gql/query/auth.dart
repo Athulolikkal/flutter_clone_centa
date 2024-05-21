@@ -28,7 +28,6 @@ mutation addUser {
     email  
   }
 }
-
 ''')));
 
       if (result.hasException) {
