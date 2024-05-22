@@ -1,5 +1,6 @@
 import 'package:centa_clone/applcation/bloc/home_screen/home_screen_bloc.dart';
 import 'package:centa_clone/applcation/bloc/learnings/bloc/learning_bloc.dart';
+import 'package:centa_clone/applcation/bloc/loading/loading_bloc.dart';
 import 'package:centa_clone/domain/core/dependency_injection/injectable.dart';
 import 'package:centa_clone/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import 'firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();  
+  WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -31,8 +32,10 @@ class CentaClone extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<LearningBloc>(),
         ),
+        BlocProvider(
+          create: (context) => getIt<LoadingBloc>(),
+        ),
       ],
-    
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Clone',

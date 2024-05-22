@@ -1,8 +1,11 @@
 // import 'package:centa_clone/widgets/text_editor/quil_text_editor.dart';
+import 'package:centa_clone/applcation/bloc/loading/loading_bloc.dart';
 import 'package:centa_clone/services/update_post.dart';
+import 'package:centa_clone/widgets/loading_modal.dart';
 import 'package:centa_clone/widgets/text_editor/custom_embed_builder.dart';
 import 'package:centa_clone/widgets/text_editor/upload_modal_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
 class AddPostWidget extends StatelessWidget {
@@ -49,36 +52,73 @@ class AddPostWidget extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.blue),
-                    foregroundColor: MaterialStatePropertyAll(Colors.white),
-                    minimumSize: MaterialStatePropertyAll(Size(40, 30))),
-                onPressed: () async {
-                  Map<String, dynamic> postDetails =
-                      await updatePost(_controller);
-                  if (postDetails['error']) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text(
-                          'Failed to upload post,Please try again after some time...'),
-                      margin: EdgeInsets.all(10),
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor: Color.fromARGB(255, 229, 28, 28),
-                    ));
-                    Navigator.of(context).pop();
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('Post uploaded successfully'),
-                      margin: EdgeInsets.all(10),
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor: Color.fromARGB(255, 34, 138, 5),
-                    ));
-                    Navigator.of(context).pop();
-                  }
-                },
-                child: const Text('Share Post')),
+          BlocBuilder<LoadingBloc, LoadingState>(
+            builder: (context, state) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(Colors.blue),
+                      foregroundColor: MaterialStatePropertyAll(Colors.white),
+                      minimumSize: MaterialStatePropertyAll(Size(40, 30))),
+                  onPressed: state.isLoading
+                      ? null
+                      : () async {
+                          BlocProvider.of<LoadingBloc>(context)
+                              .add(const LoadingEvent.setLoading());
+                          print('dely started');
+                          showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return const AlertModal();
+                              });
+                          await Future.delayed(Duration(milliseconds: 100));
+                          print('dely ended');
+                          print('started calling the update post');
+                          Map<String, dynamic> postDetails =
+                              await updatePost(_controller);
+                          print('returnd the response from update post');
+                          if (postDetails['empty']) {
+                            Navigator.of(context).pop();
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content:
+                                  Text('Please add the content before posting'),
+                              margin: EdgeInsets.all(10),
+                              behavior: SnackBarBehavior.floating,
+                              backgroundColor: Color.fromARGB(255, 31, 31, 31),
+                            ));
+                           
+                          } else if (postDetails['error']) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text(
+                                  'Failed to upload post,Please try again after some time...'),
+                              margin: EdgeInsets.all(10),
+                              behavior: SnackBarBehavior.floating,
+                              backgroundColor: Color.fromARGB(255, 229, 28, 28),
+                            ));
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text('Post uploaded successfully'),
+                              margin: EdgeInsets.all(10),
+                              behavior: SnackBarBehavior.floating,
+                              backgroundColor: Color.fromARGB(255, 34, 138, 5),
+                            ));
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                          }
+                          BlocProvider.of<LoadingBloc>(context)
+                              .add(const LoadingEvent.setNotLoading());
+                        },
+                  child: Text(state.isLoading ? 'Loading...' : 'Share Post'),
+                ),
+              );
+            },
           ),
         ],
       ),

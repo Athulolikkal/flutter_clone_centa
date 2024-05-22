@@ -13,38 +13,39 @@ Future<Map<String, dynamic>> updatePost(QuillController controller) async {
             deltaJson[0]['insert'].trim().isEmpty);
 
     if (isEmpty) {
-      return {'error': true, 'message': 'can\'t share empty'};
+      return {'error': true, 'message': 'can\'t share empty','empty':true};
     } else {
       for (var operation in deltaJson) {
         if (operation.containsKey('insert') && operation['insert'] is Map) {
           var insertValue = operation['insert'] as Map;
           if (insertValue.containsKey('image')) {
+           
             var imageUrl = await uploadImageNhost(insertValue['image']);
             if (imageUrl == 'error') {
-              return {'error': true, 'message': 'unable to upload images'};
+              return {'error': true, 'message': 'unable to upload images','empty':false};
             } else {
               insertValue['image'] = imageUrl;
             }
           }
         }
       }
-
+      print('uploaded all the images');
       final userDetails = GetStorage().read('user');
       final String? userId = userDetails['userId'];
       if (userId != null) {
         final isPostAdded = await GraphQlQueryPostServices()
             .addPost(userId: userId, postDetails: deltaJson);
         if (isPostAdded['error']) {
-          return {'error': true, 'message': 'post upload failed'};
+          return {'error': true, 'message': 'post upload failed','empty':false};
         } else {
-          return {'error': false, 'message': 'post uploaded successfully'};
+          return {'error': false, 'message': 'post uploaded successfully','empty':false};
         }
       } else {
-        return {'error': true, 'message': 'user Id is not present'};
+        return {'error': true, 'message': 'user Id is not present','empty':false};
       }
     }
   } catch (err) {
     print(err);
-    return {'error': true,'message': 'server error'};
+    return {'error': true,'message': 'server error','empty':false};
   }
 }
