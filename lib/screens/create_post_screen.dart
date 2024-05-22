@@ -66,15 +66,14 @@ class AddPostWidget extends StatelessWidget {
                       : () async {
                           BlocProvider.of<LoadingBloc>(context)
                               .add(const LoadingEvent.setLoading());
-                          print('dely started');
+
                           showDialog(
                               context: context,
                               barrierDismissible: false,
                               builder: (BuildContext context) {
                                 return const AlertModal();
                               });
-                          await Future.delayed(Duration(milliseconds: 100));
-                          print('dely ended');
+                          Future.delayed(Duration(seconds: 1));
                           print('started calling the update post');
                           Map<String, dynamic> postDetails =
                               await updatePost(_controller);
@@ -89,7 +88,6 @@ class AddPostWidget extends StatelessWidget {
                               behavior: SnackBarBehavior.floating,
                               backgroundColor: Color.fromARGB(255, 31, 31, 31),
                             ));
-                           
                           } else if (postDetails['error']) {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
@@ -104,10 +102,10 @@ class AddPostWidget extends StatelessWidget {
                           } else {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
-                              content: Text('Post uploaded successfully'),
+                              content: Text('Uploaded successfully'),
                               margin: EdgeInsets.all(10),
                               behavior: SnackBarBehavior.floating,
-                              backgroundColor: Color.fromARGB(255, 34, 138, 5),
+                              backgroundColor: Color.fromARGB(255, 93, 225, 57),
                             ));
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
@@ -135,6 +133,8 @@ class AddPostWidget extends StatelessWidget {
                     embedBuilders: [CustomImageEmbedBuilder()],
                     autoFocus: true,
                     showCursor: true,
+                    textSelectionThemeData: const TextSelectionThemeData(
+                        cursorColor: Color.fromARGB(255, 58, 153, 230)),
                     sharedConfigurations: const QuillSharedConfigurations(
                       locale: Locale('de'),
                     ),

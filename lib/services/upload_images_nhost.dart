@@ -19,6 +19,7 @@ Future<String> uploadImageNhost(String path) async {
     final file = File(path);
     final fileBytes = await file.readAsBytes();
     final fileName = basename(path);
+    // final fileName = 'userImage.jpg';
 
     //unique file name
     final uniqueFileName = '${DateTime.now().millisecondsSinceEpoch}_$fileName';
@@ -30,33 +31,34 @@ Future<String> uploadImageNhost(String path) async {
     }
 
     //converting to jpeg format if its not
-    Uint8List finalFileBytes;
-    if (fileName.toLowerCase().endsWith('jpg') ||
-        fileName.toLowerCase().endsWith('jpeg')) {
-      finalFileBytes = fileBytes;
-    } else {
-      finalFileBytes = Uint8List.fromList(img.encodeJpg(image));
-    }
+    // Uint8List finalFileBytes;
+    // if (fileName.toLowerCase().endsWith('jpg') ||
+    //     fileName.toLowerCase().endsWith('jpeg')) {
+    //   finalFileBytes = fileBytes;
+    // } else {
+    //   finalFileBytes = Uint8List.fromList(img.encodeJpg(image));
+    // }
 
-    //checking the file size and if it is greater than 1.5 mb then then reduce the size
-    if (finalFileBytes.lengthInBytes > 1.5 * 1024 * 1024) {
-      //compress the image
-      int quality = 85;
-      finalFileBytes =
-          Uint8List.fromList(img.encodeJpg(image, quality: quality));
+    // //checking the file size and if it is greater than 1.5 mb then then reduce the size
+    // if (finalFileBytes.lengthInBytes > 1.5 * 1024 * 1024) {
+    //   //compress the image
+    //   int quality = 85;
+    //   finalFileBytes =
+    //       Uint8List.fromList(img.encodeJpg(image, quality: quality));
 
-      //if it still size is greater than 1.5 mb then again compressing
-      while (finalFileBytes.lengthInBytes > 1.5 * 1024 * 1024 && quality > 10) {
-        quality -= 5;
-        finalFileBytes =
-            Uint8List.fromList(img.encodeJpg(image, quality: quality));
-      }
-    }
+    //   //if it still size is greater than 1.5 mb then again compressing
+    //   while (finalFileBytes.lengthInBytes > 1.5 * 1024 * 1024 && quality > 10) {
+    //     quality -= 5;
+    //     finalFileBytes =
+    //         Uint8List.fromList(img.encodeJpg(image, quality: quality));
+    //   }
+    // }
 
     //uploading image to nHost
     final response = await nhost.storage.uploadBytes(
         fileName: uniqueFileName,
-        fileContents: finalFileBytes,
+        fileContents: fileBytes,
+        // fileContents: finalFileBytes,
         mimeType: 'image/jpeg');
     final String? imageId = response.id;
     if (imageId != null) {

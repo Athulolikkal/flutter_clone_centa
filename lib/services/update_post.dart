@@ -29,7 +29,7 @@ Future<Map<String, dynamic>> updatePost(QuillController controller) async {
           }
         }
       }
-      print('uploaded all the images');
+    
       final userDetails = GetStorage().read('user');
       final String? userId = userDetails['userId'];
       if (userId != null) {

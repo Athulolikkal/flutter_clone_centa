@@ -89,10 +89,12 @@ class _CommunityScreenState extends State<CommunityScreen>
                       label: 'Add Post',
                       onTap: () async {
                         final userDetails = await GetStorage().read('user');
-                       
                         if (userDetails != null) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (cntx) => const AddPostWidget()));
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (cntx) => const AddPostWidget(),
+                            ),
+                          );
                         } else {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
@@ -102,11 +104,12 @@ class _CommunityScreenState extends State<CommunityScreen>
                             behavior: SnackBarBehavior.floating,
                             backgroundColor: Color.fromARGB(255, 17, 17, 17),
                           ));
-                          // Navigator.of(context).pushAndRemoveUntil(
-                          //   MaterialPageRoute(
-                          //       builder: (cntx) => const LoginRoot()),
-                          //   (Route<dynamic> route) => false,
-                          // );
+                          Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                              builder: (cntx) => const LoginRoot(),
+                            ),
+                            (Route<dynamic> route) => route.isFirst,
+                          );
                         }
                       }),
                 ],
