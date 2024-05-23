@@ -2,7 +2,6 @@ import 'package:centa_clone/applcation/bloc/learnings/bloc/learning_bloc.dart';
 import 'package:centa_clone/data/learning_page.dart';
 import 'package:centa_clone/widgets/learning_screen/items_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LearningScreen extends StatelessWidget {

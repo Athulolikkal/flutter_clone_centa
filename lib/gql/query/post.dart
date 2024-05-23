@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:centa_clone/gql/config/graphql_config.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -7,6 +5,7 @@ class GraphQlQueryPostServices {
   static GraphQLConfig graphQLConfig = GraphQLConfig();
   GraphQLClient client = graphQLConfig.clientToQuery();
 
+//To Add Post
   Future<Map<String, dynamic>> addPost(
       {required String userId, required List<Map> postDetails}) async {
     try {
@@ -27,14 +26,9 @@ mutation addPost(\$userId: uuid!, \$postContent: jsonb!) {
         ),
       );
 
-      print("$isAddPost is add post");
       if (isAddPost.hasException) {
-        print('has exception, ${isAddPost.exception.toString()}');
         return {'error': true, 'message': 'exception not handled properly'};
       } else {
-        print(
-            "${isAddPost.data!['insert_post_one']['id']}, is add post is this");
-
         if (isAddPost.data?['insert_post_one']['id'] != null) {
           return {'error': false, 'message': 'Post added successfully'};
         } else {
@@ -44,6 +38,47 @@ mutation addPost(\$userId: uuid!, \$postContent: jsonb!) {
     } catch (err) {
       print("$err error");
       return {'error': true, 'message': 'Error happend'};
+    }
+  }
+
+//To Get All Active Posts
+  Future<List<Map>> fetchAllActivePosts(bool isActive) async {
+    try {
+      QueryResult result = await client.query(
+          QueryOptions(fetchPolicy: FetchPolicy.noCache, document: gql('''
+query GetAllActivePosts{
+  post(where:{active:{_eq:$isActive}},order_by:{updated_at:desc}){
+    id,
+    post_content,
+    userId,
+    likes,
+    comments,
+    updated_at,
+  }
+}
+''')));
+
+      List<Map> posts = [];
+
+      if (result.hasException) {
+        return [
+          {
+            'error': true,
+            'exception': true,
+            'message': result.exception.toString()
+          }
+        ];
+      }
+      if (result.data != null) {
+        posts = List<Map>.from(result.data!['post']);
+      }
+
+      return posts;
+    } catch (err) {
+      print("$err, error found");
+      return [
+        {'error': true, 'exception': false, 'message': 'something went wrong'}
+      ];
     }
   }
 }

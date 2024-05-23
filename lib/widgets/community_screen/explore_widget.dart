@@ -1,212 +1,108 @@
+import 'package:centa_clone/applcation/bloc/postdata/posts_bloc.dart';
 import 'package:centa_clone/data/community_data.dart';
+import 'package:centa_clone/widgets/community_screen/post_like_widget.dart';
 import 'package:centa_clone/widgets/text_editor/quil_text_editor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExploreWidget extends StatelessWidget {
   const ExploreWidget({Key? key});
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<PostsBloc>(context)
+          .add(const PostsEvent.getAllActivePosts());
+    });
+    Future<void> _refresh() async {
+      return BlocProvider.of<PostsBloc>(context)
+          .add(const PostsEvent.getAllActivePosts());
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
-      child: ListView.separated(
-        shrinkWrap: true,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.all(10),
-            child: Container(
-              color: Colors.white,
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        communityPost[index]['profile_img'],
-                      ),
-                      radius: 25,
-                    ),
-                    title: Text(
-                      communityPost[index]['user_name'],
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    subtitle: Text("${communityPost[index]['time_ago']} ago"),
-                  ),
+      child: BlocBuilder<PostsBloc, PostsState>(
+        builder: (context, state) {
+          if (state.posts.isNotEmpty) {
+            return RefreshIndicator(
+              onRefresh: _refresh,
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Container(
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          const ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  Color.fromARGB(255, 236, 234, 234),
+                              // backgroundImage: NetworkImage(
+                              //   communityPost[index]['profile_img'],
 
-                  QuilTextEditor(),
-
-                  // Only show details when image is loaded
-                  // Image.network(
-                  //   communityPost[index]['profile_img'],
-                  //   loadingBuilder: (BuildContext context, Widget child,
-                  //       ImageChunkEvent? loadingProgress) {
-                  //     if (loadingProgress == null) {
-                  //       return Column(
-                  //         children: [
-                  //           Padding(
-                  //             padding: const EdgeInsets.all(23.0),
-                  //             child: SelectableText(
-                  //               communityPost[index]['content'],
-                  //               style: const TextStyle(fontSize: 15),
-                  //             ),
-                  //           ),
-                  //           Row(
-                  //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //             children: [
-                  //               IconButton(
-                  //                 onPressed: () {
-                  //                   print('like');
-                  //                 },
-                  //                 icon: Row(
-                  //                   children: [
-                  //                     const Icon(Icons.thumb_up_alt_outlined),
-                  //                     const SizedBox(width: 5),
-                  //                     Text(communityPost[index]['likes']),
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //               IconButton(
-                  //                 onPressed: () {
-                  //                   print('message');
-                  //                 },
-                  //                 icon: Row(
-                  //                   children: [
-                  //                     const Icon(Icons.message_outlined),
-                  //                     const SizedBox(width: 5),
-                  //                     Text(
-                  //                         "${communityPost[index]['comments']}"),
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //               IconButton(
-                  //                 onPressed: () {
-                  //                   print('share');
-                  //                 },
-                  //                 icon: const Icon(Icons.share_outlined),
-                  //               ),
-                  //               IconButton(
-                  //                 onPressed: () {
-                  //                   print('more');
-                  //                 },
-                  //                 icon: const Icon(Icons.more_horiz_outlined),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ],
-                  //       );
-                  //     } else {
-                  //       return const Align(
-                  //           alignment: Alignment.center,
-                  //           child: Text('loading...'));
-                  //       // return const CircularProgressIndicator();
-                  //     }
-                  //   },
-                  // ),
-                ],
+                              // ),
+                              child: Icon(
+                                Icons.person,
+                                size: 50,
+                                color: Color.fromARGB(255, 98, 175, 237),
+                              ),
+                              radius: 25,
+                            ),
+                            title: Text(
+                              'Athul Sabu',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            subtitle: Text(
+                              "10min ago",
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                            // Text("${communityPost[index]['time_ago']} ago"),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: QuilTextEditor(
+                              textEditorContent: state.posts[index].content,
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            child: PostLikeWidget(),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const Divider();
+                },
+                itemCount: state.posts.length,
               ),
-            ),
-          );
+            );
+          } else if (state.isLoading) {
+            return const Center(
+              child: SizedBox(
+                height: 30,
+                width: 30,
+                child: CircularProgressIndicator(
+                  color: Color.fromARGB(255, 83, 168, 237),
+                ),
+              ),
+            );
+          } else {
+            return const Center(
+                child: Text(
+              'Faild to fetch the posts',
+              style: TextStyle(color: Color.fromARGB(255, 237, 77, 65)),
+            ));
+          }
         },
-        separatorBuilder: (context, index) {
-          return const Divider();
-        },
-        itemCount: communityPost.length,
       ),
     );
   }
 }
-
-// import 'package:centa_clone/data/community_data.dart';
-// import 'package:flutter/material.dart';
-
-// class ExploreWidget extends StatelessWidget {
-//   const ExploreWidget({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 20),
-//       child: ListView.separated(
-//           itemBuilder: (BuildContext context, int index) {
-//             return Padding(
-//                 padding: const EdgeInsets.all(10),
-//                 child: Container(
-//                   color: Colors.white,
-//                   child: Column(
-//                     children: [
-//                       ListTile(
-//                         leading: CircleAvatar(
-//                           backgroundImage:
-//                               NetworkImage(communityPost[index]['profile_img']),
-//                           radius: 25,
-//                         ),
-//                         title: Text(
-//                           communityPost[index]['user_name'],
-//                           style: const TextStyle(
-//                               fontSize: 16, fontWeight: FontWeight.w500),
-//                         ),
-//                         subtitle:
-//                             Text("${communityPost[index]['time_ago']} ago"),
-//                       ),
-//                       Padding(
-//                         padding: const EdgeInsets.all(23.0),
-//                         child: Text(
-//                           communityPost[index]['content'],
-//                           style: const TextStyle(fontSize: 15),
-//                         ),
-//                       ),
-//                       Row(
-//                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                         children: [
-//                           IconButton(
-//                               onPressed: () {
-//                                 print('like');
-//                               },
-//                               icon: Row(
-//                                 children: [
-//                                   const Icon(Icons.thumb_up_alt_outlined),
-//                                   const SizedBox(
-//                                     width: 5,
-//                                   ),
-//                                   Text(communityPost[index]['likes'])
-//                                 ],
-//                               )),
-//                           IconButton(
-//                             onPressed: () {
-//                               print('message');
-//                             },
-//                             icon: Row(
-//                               children: [
-//                                   const Icon(Icons.message_outlined),
-//                                    const SizedBox(
-//                                     width: 5,
-//                                   ),
-//                                   Text("${communityPost[index]['comments']}")
-//                               ],
-//                             ),
-//                           ),
-//                           IconButton(
-//                               onPressed: () {
-//                                 print('share');
-//                               },
-//                               icon: const Icon(Icons.share_outlined)),
-//                           IconButton(
-//                               onPressed: () {
-//                                 print('more');
-//                               },
-//                               icon: const Icon(Icons.more_horiz_outlined)),
-//                         ],
-//                       )
-//                     ],
-//                   ),
-//                 ));
-//           },
-//           separatorBuilder: (context, index) {
-//             return const Divider();
-//           },
-//           itemCount: communityPost.length),
-//     );
-//   }
-// }

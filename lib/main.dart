@@ -1,6 +1,7 @@
 import 'package:centa_clone/applcation/bloc/home_screen/home_screen_bloc.dart';
 import 'package:centa_clone/applcation/bloc/learnings/bloc/learning_bloc.dart';
 import 'package:centa_clone/applcation/bloc/loading/loading_bloc.dart';
+import 'package:centa_clone/applcation/bloc/postdata/posts_bloc.dart';
 import 'package:centa_clone/domain/core/dependency_injection/injectable.dart';
 import 'package:centa_clone/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,9 @@ class CentaClone extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<LoadingBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<PostsBloc>(),
         ),
       ],
       child: MaterialApp(

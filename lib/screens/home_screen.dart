@@ -21,7 +21,10 @@ class HomeScreen extends StatelessWidget {
       BlocProvider.of<HomeScreenBloc>(context)
           .add(const HomeScreenEvent.getAutoScrollDataInformation());
     });
-
+    Future<void> _refresh() async {
+      return BlocProvider.of<HomeScreenBloc>(context)
+          .add(const HomeScreenEvent.getAutoScrollDataInformation());
+    }
     //---calling every build
     // BlocProvider.of<HomeScreenBloc>(context)
     //     .add(const HomeScreenEvent.getAutoScrollDataInformation());
@@ -32,87 +35,93 @@ class HomeScreen extends StatelessWidget {
       child: BlocBuilder<HomeScreenBloc, HomeScreenState>(
         builder: (context, state) {
           return state.homeScreenData.isNotEmpty
-              ? 
-              ListView(
-                  children: [
-                    //First container
-                    // if (state.homeScreenData != null)
-                    //   state.homeScreenData!.isNotEmpty
-                    //       ? AutoScrollContainerWidget(
-                    //           scrollDetails: state.homeScreenData![0])
-                    //       : SizedBox
-                    //           .shrink(), // Use SizedBox.shrink() to represent an empty widget
-                    if (state.homeScreenData.isNotEmpty)
-                      AutoScrollContainerWidget(
-                        autoScrollDetails: state.homeScreenData[0],
+              ? RefreshIndicator(
+                  onRefresh: _refresh,
+                  child: ListView(
+                    children: [
+                      //First container
+                      // if (state.homeScreenData != null)
+                      //   state.homeScreenData!.isNotEmpty
+                      //       ? AutoScrollContainerWidget(
+                      //           scrollDetails: state.homeScreenData![0])
+                      //       : SizedBox
+                      //           .shrink(), // Use SizedBox.shrink() to represent an empty widget
+                      if (state.homeScreenData.isNotEmpty)
+                        AutoScrollContainerWidget(
+                          autoScrollDetails: state.homeScreenData[0],
+                        ),
+                      SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Row(children: [
+                                Text(
+                                  'Trending Searches',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Icon(Icons.trending_up_outlined),
+                              ]),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const AllTrendingSearches()));
+                                  },
+                                  child: const Text(
+                                    'All Topics',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Colors.blue),
+                                  ))
+                            ],
+                          ),
+                        ),
                       ),
-                    SizedBox(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Row(children: [
-                              Text(
-                                'Trending Searches',
+                      if (state.homeScreenData.isNotEmpty)
+                        TrendingSearchesWidget(
+                            trendingDetails: state.homeScreenData[1]),
+
+                      //Recommended for you
+                      SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Recommended for You',
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
-                              Icon(Icons.trending_up_outlined),
-                            ]),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          const AllTrendingSearches()));
-                                },
-                                child: const Text(
-                                  'All Topics',
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.blue),
-                                ))
-                          ],
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (cntx) =>
+                                                const RecommendedForYou()));
+                                  },
+                                  child: const Text(
+                                    'View All',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Colors.blue),
+                                  ))
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    if (state.homeScreenData.isNotEmpty)
-                      TrendingSearchesWidget(
-                          trendingDetails: state.homeScreenData[1]),
-
-                    //Recommended for you
-                    SizedBox(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Recommended for You',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (cntx) =>
-                                          const RecommendedForYou()));
-                                },
-                                child: const Text(
-                                  'View All',
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.blue),
-                                ))
-                          ],
-                        ),
-                      ),
-                    ),
-                    if (state.homeScreenData.isNotEmpty)
-                      ItemsShowCard(courseDetails: state.homeScreenData[2]),
-                    // ItemsShowCard(courseDetails: recommendation_data),
-                    const StartContainerWidget(),
-                    const ContainerLastWidget(),
-                  ],
-                ):const Center(child: CircularProgressIndicator());
+                      if (state.homeScreenData.isNotEmpty)
+                        ItemsShowCard(courseDetails: state.homeScreenData[2]),
+                      // ItemsShowCard(courseDetails: recommendation_data),
+                      const StartContainerWidget(),
+                      const ContainerLastWidget(),
+                    ],
+                  ),
+                )
+              : const Center(child: CircularProgressIndicator());
         },
       ),
     ));

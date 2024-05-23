@@ -1,5 +1,6 @@
 // import 'package:centa_clone/widgets/text_editor/quil_text_editor.dart';
 import 'package:centa_clone/applcation/bloc/loading/loading_bloc.dart';
+import 'package:centa_clone/applcation/bloc/postdata/posts_bloc.dart';
 import 'package:centa_clone/services/update_post.dart';
 import 'package:centa_clone/widgets/loading_modal.dart';
 import 'package:centa_clone/widgets/text_editor/custom_embed_builder.dart';
@@ -100,6 +101,8 @@ class AddPostWidget extends StatelessWidget {
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
                           } else {
+                            BlocProvider.of<PostsBloc>(context)
+                                .add(const PostsEvent.getAllActivePosts());
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
                               content: Text('Uploaded successfully'),
@@ -130,7 +133,7 @@ class AddPostWidget extends StatelessWidget {
                   configurations: QuillEditorConfigurations(
                     placeholder: 'What\'s happening...',
                     controller: _controller,
-                    embedBuilders: [CustomImageEmbedBuilder()],
+                    embedBuilders: [CustomImageEmbedBuilder(isFileImage: true)],
                     autoFocus: true,
                     showCursor: true,
                     textSelectionThemeData: const TextSelectionThemeData(
