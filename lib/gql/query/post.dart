@@ -54,6 +54,11 @@ query GetAllActivePosts{
     likes,
     comments,
     updated_at,
+    user_details{
+      first_name
+      last_name
+      profile_image
+    }
   }
 }
 ''')));

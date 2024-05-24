@@ -24,6 +24,7 @@ class ExploreWidget extends StatelessWidget {
       child: BlocBuilder<PostsBloc, PostsState>(
         builder: (context, state) {
           if (state.posts.isNotEmpty) {
+            print(state.posts);
             return RefreshIndicator(
               onRefresh: _refresh,
               child: ListView.separated(

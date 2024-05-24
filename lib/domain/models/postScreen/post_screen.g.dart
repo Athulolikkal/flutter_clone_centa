@@ -13,6 +13,7 @@ _$PostsDataImpl _$$PostsDataImplFromJson(Map<String, dynamic> json) =>
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
       date: json['updated_at'] as String,
+      userDetails: json['user_details'] as Map<String, dynamic>,
       likes:
           (json['likes'] as List<dynamic>?)?.map((e) => e as String).toList(),
       comments: (json['comments'] as List<dynamic>?)
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$PostsDataImplToJson(_$PostsDataImpl instance) =>
       'id': instance.postId,
       'post_content': instance.content,
       'updated_at': instance.date,
+      'user_details': instance.userDetails,
       'likes': instance.likes,
       'comments': instance.comments,
       'userId': instance.userId,

@@ -26,6 +26,8 @@ mixin _$PostsData {
   List<Map<String, dynamic>>? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
   String get date => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_details')
+  Map<dynamic, dynamic> get userDetails => throw _privateConstructorUsedError;
   List<String>? get likes => throw _privateConstructorUsedError;
   List<Map<String, dynamic>>? get comments =>
       throw _privateConstructorUsedError;
@@ -46,6 +48,7 @@ abstract class $PostsDataCopyWith<$Res> {
       {@JsonKey(name: 'id') String postId,
       @JsonKey(name: 'post_content') List<Map<String, dynamic>>? content,
       @JsonKey(name: 'updated_at') String date,
+      @JsonKey(name: 'user_details') Map<dynamic, dynamic> userDetails,
       List<String>? likes,
       List<Map<String, dynamic>>? comments,
       String? userId});
@@ -67,6 +70,7 @@ class _$PostsDataCopyWithImpl<$Res, $Val extends PostsData>
     Object? postId = null,
     Object? content = freezed,
     Object? date = null,
+    Object? userDetails = null,
     Object? likes = freezed,
     Object? comments = freezed,
     Object? userId = freezed,
@@ -84,6 +88,10 @@ class _$PostsDataCopyWithImpl<$Res, $Val extends PostsData>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
+      userDetails: null == userDetails
+          ? _value.userDetails
+          : userDetails // ignore: cast_nullable_to_non_nullable
+              as Map<dynamic, dynamic>,
       likes: freezed == likes
           ? _value.likes
           : likes // ignore: cast_nullable_to_non_nullable
@@ -112,6 +120,7 @@ abstract class _$$PostsDataImplCopyWith<$Res>
       {@JsonKey(name: 'id') String postId,
       @JsonKey(name: 'post_content') List<Map<String, dynamic>>? content,
       @JsonKey(name: 'updated_at') String date,
+      @JsonKey(name: 'user_details') Map<dynamic, dynamic> userDetails,
       List<String>? likes,
       List<Map<String, dynamic>>? comments,
       String? userId});
@@ -131,6 +140,7 @@ class __$$PostsDataImplCopyWithImpl<$Res>
     Object? postId = null,
     Object? content = freezed,
     Object? date = null,
+    Object? userDetails = null,
     Object? likes = freezed,
     Object? comments = freezed,
     Object? userId = freezed,
@@ -148,6 +158,10 @@ class __$$PostsDataImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
+      userDetails: null == userDetails
+          ? _value._userDetails
+          : userDetails // ignore: cast_nullable_to_non_nullable
+              as Map<dynamic, dynamic>,
       likes: freezed == likes
           ? _value._likes
           : likes // ignore: cast_nullable_to_non_nullable
@@ -172,10 +186,13 @@ class _$PostsDataImpl implements _PostsData {
       @JsonKey(name: 'post_content')
       required final List<Map<String, dynamic>>? content,
       @JsonKey(name: 'updated_at') required this.date,
+      @JsonKey(name: 'user_details')
+      required final Map<dynamic, dynamic> userDetails,
       required final List<String>? likes,
       required final List<Map<String, dynamic>>? comments,
       required this.userId})
       : _content = content,
+        _userDetails = userDetails,
         _likes = likes,
         _comments = comments;
 
@@ -199,6 +216,15 @@ class _$PostsDataImpl implements _PostsData {
   @override
   @JsonKey(name: 'updated_at')
   final String date;
+  final Map<dynamic, dynamic> _userDetails;
+  @override
+  @JsonKey(name: 'user_details')
+  Map<dynamic, dynamic> get userDetails {
+    if (_userDetails is EqualUnmodifiableMapView) return _userDetails;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_userDetails);
+  }
+
   final List<String>? _likes;
   @override
   List<String>? get likes {
@@ -224,7 +250,7 @@ class _$PostsDataImpl implements _PostsData {
 
   @override
   String toString() {
-    return 'PostsData(postId: $postId, content: $content, date: $date, likes: $likes, comments: $comments, userId: $userId)';
+    return 'PostsData(postId: $postId, content: $content, date: $date, userDetails: $userDetails, likes: $likes, comments: $comments, userId: $userId)';
   }
 
   @override
@@ -235,6 +261,8 @@ class _$PostsDataImpl implements _PostsData {
             (identical(other.postId, postId) || other.postId == postId) &&
             const DeepCollectionEquality().equals(other._content, _content) &&
             (identical(other.date, date) || other.date == date) &&
+            const DeepCollectionEquality()
+                .equals(other._userDetails, _userDetails) &&
             const DeepCollectionEquality().equals(other._likes, _likes) &&
             const DeepCollectionEquality().equals(other._comments, _comments) &&
             (identical(other.userId, userId) || other.userId == userId));
@@ -247,6 +275,7 @@ class _$PostsDataImpl implements _PostsData {
       postId,
       const DeepCollectionEquality().hash(_content),
       date,
+      const DeepCollectionEquality().hash(_userDetails),
       const DeepCollectionEquality().hash(_likes),
       const DeepCollectionEquality().hash(_comments),
       userId);
@@ -271,6 +300,8 @@ abstract class _PostsData implements PostsData {
       @JsonKey(name: 'post_content')
       required final List<Map<String, dynamic>>? content,
       @JsonKey(name: 'updated_at') required final String date,
+      @JsonKey(name: 'user_details')
+      required final Map<dynamic, dynamic> userDetails,
       required final List<String>? likes,
       required final List<Map<String, dynamic>>? comments,
       required final String? userId}) = _$PostsDataImpl;
@@ -287,6 +318,9 @@ abstract class _PostsData implements PostsData {
   @override
   @JsonKey(name: 'updated_at')
   String get date;
+  @override
+  @JsonKey(name: 'user_details')
+  Map<dynamic, dynamic> get userDetails;
   @override
   List<String>? get likes;
   @override
