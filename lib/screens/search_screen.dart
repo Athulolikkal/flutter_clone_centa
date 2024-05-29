@@ -19,13 +19,12 @@ class SearchScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10),
               child: CupertinoSearchTextField(
                 onChanged: (value) {
                   BlocProvider.of<SearchesBloc>(context)
                       .add(SearchesEvent.getAllSearchItems(value));
-
-                  print(value);
                 },
                 backgroundColor: const Color.fromARGB(255, 244, 243, 243),
                 placeholder: 'What are you planning to learn today?',
