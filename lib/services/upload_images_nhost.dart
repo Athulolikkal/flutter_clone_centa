@@ -53,7 +53,7 @@ Future<String> uploadImageNhost(String path) async {
     //         Uint8List.fromList(img.encodeJpg(image, quality: quality));
     //   }
     // }
-
+    
     //uploading image to nHost
     final response = await nhost.storage.uploadBytes(
         fileName: uniqueFileName,

@@ -40,16 +40,12 @@ class ExploreWidget extends StatelessWidget {
                             leading: CircleAvatar(
                               backgroundColor:
                                   Color.fromARGB(255, 236, 234, 234),
-                              // backgroundImage: NetworkImage(
-                              //   communityPost[index]['profile_img'],
-
-                              // ),
+                              radius: 25,
                               child: Icon(
                                 Icons.person,
                                 size: 50,
                                 color: Color.fromARGB(255, 98, 175, 237),
                               ),
-                              radius: 25,
                             ),
                             title: Text(
                               'Athul Sabu',
@@ -70,9 +66,11 @@ class ExploreWidget extends StatelessWidget {
                               textEditorContent: state.posts[index].content,
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15),
-                            child: PostLikeWidget(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            child: PostLikeWidget(
+                              totalLikes: state.posts[index].likes?.length ?? 0,
+                            ),
                           )
                         ],
                       ),

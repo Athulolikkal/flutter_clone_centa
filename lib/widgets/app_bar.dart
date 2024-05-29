@@ -1,4 +1,5 @@
 import 'package:centa_clone/screens/root_screen.dart';
+import 'package:centa_clone/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -25,7 +26,10 @@ class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (cntx) => const SearchScreen()));
+            },
             icon: const Icon(Icons.search),
             iconSize: 30.0,
           ),
@@ -44,10 +48,6 @@ class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
             return GestureDetector(
               onTap: () {
                 Scaffold.of(context).openDrawer();
-                // Navigator.of(context).pushAndRemoveUntil(
-                //   MaterialPageRoute(builder: (cntx) => const LoginRoot()),
-                //   (Route<dynamic> route) => false,
-                // );
               },
               child: userDetails == null
                   ? const CircleAvatar(
@@ -63,7 +63,7 @@ class CentaAppBar extends StatelessWidget implements PreferredSizeWidget {
                           ? NetworkImage(userDetails['userProfile'])
                           : null,
                       child: userDetails['userProfile'] == null
-                          ? Icon(
+                          ? const Icon(
                               Icons.person,
                               color: Colors.blue,
                             )

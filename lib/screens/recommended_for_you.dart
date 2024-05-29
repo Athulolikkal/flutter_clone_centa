@@ -1,9 +1,11 @@
 import 'package:centa_clone/data/auto_scroll_container_data.dart';
+import 'package:centa_clone/domain/models/home_screen.dart';
 import 'package:centa_clone/screens/view_course_details.dart';
 import 'package:flutter/material.dart';
 
 class RecommendedForYou extends StatelessWidget {
-  const RecommendedForYou({super.key});
+  final List<HomeScreenData> courseDetails;
+  const RecommendedForYou({super.key, required this.courseDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +43,15 @@ class RecommendedForYou extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => CourseViewDetails(
-                              imageUrl: recommendation_data[index]['image'],
-                              price: recommendation_data[index]['price'],
-                              titleText: recommendation_data[index]['title'],
-                              tag: recommendation_data[index]['tag'],
-                              rating: recommendation_data[index]['rating'],
+                              imageUrl:
+                                  courseDetails[index].imageUrl.toString() ??
+                                      '',
+                              price: courseDetails[index].price?.toInt() ?? 0,
+                              titleText:
+                                  courseDetails[index].title.toString() ?? '',
+                              tag: courseDetails[index].tag.toString(),
+                              rating: courseDetails[index].rating!.toDouble() ??
+                                  0.0,
                             )));
                   },
                   child: Container(
@@ -79,8 +85,8 @@ class RecommendedForYou extends StatelessWidget {
                                 bottomLeft: Radius.circular(10.0),
                                 bottomRight: Radius.circular(10.0),
                               ),
-                              child: Image.asset(
-                                recommendation_data[index]['image'],
+                              child: Image.network(
+                                courseDetails[index].imageUrl.toString() ?? '',
                                 height: 120,
                                 width: double.infinity,
                                 fit: BoxFit.cover,
@@ -119,12 +125,12 @@ class RecommendedForYou extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                recommendation_data[index]['creator'] ??
-                                    recommendation_data[index]['creator'],
+                                courseDetails[index].creator ??
+                                    courseDetails[index].creator.toString(),
                                 style: const TextStyle(fontSize: 12),
                               ),
                               Text(
-                                recommendation_data[index]['title'],
+                                courseDetails[index].title.toString() ?? '',
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                                 style: const TextStyle(
@@ -135,7 +141,7 @@ class RecommendedForYou extends StatelessWidget {
                         ),
                         const Divider(),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal:  9.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 9.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -147,7 +153,7 @@ class RecommendedForYou extends StatelessWidget {
                                     size: 18,
                                   ),
                                   Text(
-                                    "${recommendation_data[index]['rating']} | ${recommendation_data[index]['number']}",
+                                    "${courseDetails[index].rating!.toDouble()} | ${courseDetails[index].serialNumber}",
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w600,
                                         color:
@@ -157,9 +163,9 @@ class RecommendedForYou extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                recommendation_data[index]['price'] == 0
+                                courseDetails[index].price == 0
                                     ? 'FREE'
-                                    : "\u20B9 ${recommendation_data[index]['price']}.0",
+                                    : "\u20B9 ${courseDetails[index].price}.0",
                                 style: const TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.bold,

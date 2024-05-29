@@ -70,7 +70,11 @@ class HomeScreen extends StatelessWidget {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const AllTrendingSearches()));
+                                                AllTrendingSearches(
+                                                  trendingDetails:
+                                                      state.homeScreenData[1],
+                                                  fromHomeScreen: true,
+                                                )));
                                   },
                                   child: const Text(
                                     'All Topics',
@@ -102,7 +106,9 @@ class HomeScreen extends StatelessWidget {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (cntx) =>
-                                                const RecommendedForYou()));
+                                                RecommendedForYou(
+                                                    courseDetails: state
+                                                        .homeScreenData[2])));
                                   },
                                   child: const Text(
                                     'View All',
