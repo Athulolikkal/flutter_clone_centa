@@ -1,4 +1,5 @@
 import 'package:centa_clone/applcation/bloc/learnings/bloc/learning_bloc.dart';
+import 'package:centa_clone/core/custom_colors.dart';
 import 'package:centa_clone/data/learning_page.dart';
 import 'package:centa_clone/widgets/learning_screen/items_card.dart';
 import 'package:flutter/material.dart';
@@ -59,12 +60,20 @@ class LearningScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 5),
                             child: ItemsShowCard(
-                                courseDetails: state.learnings[index])
-
-                            // : const Center(child: CircularProgressIndicator()),
-                            // child: ItemsShowCard(courseDetails: courseDetails[index]),
-                            )
-                        : const Center(child: CircularProgressIndicator());
+                                courseDetails: state.learnings[index]))
+                        : Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 15,
+                            ),
+                            child: Container(
+                              height: 200,
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: CustomColorClass.loadingGradient,
+                              ),
+                            ),
+                          );
                   },
                 ),
               ],

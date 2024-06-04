@@ -1,3 +1,4 @@
+import 'package:centa_clone/core/custom_colors.dart';
 import 'package:centa_clone/domain/models/home_screen.dart';
 import 'package:centa_clone/screens/view_course_details.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class ItemsShowCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return SizedBox( 
       height: 280,
       child: ListView.builder(
         shrinkWrap: true,
@@ -36,13 +37,6 @@ Widget _itemCard(HomeScreenData course, BuildContext context) {
           titleText: course.title.toString() ?? '',
           rating: course.rating?.toDouble() ?? 0,
         ),
-        // builder: (cntx) => CourseViewDetails(
-        //   imageUrl: course['image'],
-        //   tag: course['tag'],
-        //   price: course['price'],
-        //   titleText: course['title'],
-        //   rating: course['rating'],
-        // ),
       ),
     ),
     child: Container(
@@ -81,12 +75,7 @@ Widget _itemCard(HomeScreenData course, BuildContext context) {
               child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: const Color.fromARGB(
-                      255,
-                      203,
-                      203,
-                      203,
-                    ).withOpacity(0.7),
+                    gradient: CustomColorClass.loadingGradient,
                   ),
                   child: const Padding(
                     padding: EdgeInsets.all(5.0),
@@ -124,9 +113,9 @@ Widget _itemCard(HomeScreenData course, BuildContext context) {
                         color: Colors.amber,
                       ),
                     if (course.date != null && (course.rating ?? 0) <= 1)
-                      Text(course.date.toString() ,
+                      Text(course.date.toString(),
                           style: const TextStyle(fontSize: 12)),
-                    if (course.rating!=null && course.rating! > 0)
+                    if (course.rating != null && course.rating! > 0)
                       Text("${course.rating} | ${course.serialNumber}"),
                   ],
                 ),

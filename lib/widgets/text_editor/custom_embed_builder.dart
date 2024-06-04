@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:centa_clone/core/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
@@ -21,9 +22,10 @@ class CustomImageEmbedBuilder extends EmbedBuilder {
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 400,
-        decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 203, 198, 198),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+        decoration: BoxDecoration(
+            // color: Color.fromARGB(255, 203, 198, 198),
+            gradient: CustomColorClass.loadingGradient,
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           child: isFileImage

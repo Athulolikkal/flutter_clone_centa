@@ -39,7 +39,7 @@ class AllSearches extends StatelessWidget {
                         height: 80,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.black,
+                            color:const Color.fromARGB(255, 192, 190, 190),
                             image: DecorationImage(
                               image: NetworkImage(
                                   trendingDetails[index].imageUrl.toString() ??
